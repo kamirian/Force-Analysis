@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MatPES MLIP Force Analysis</title>
+  <style>
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --border:   #30363d;
+      --accent:   #58a6ff;
+      --accent2:  #3fb950;
+      --text:     #c9d1d9;
+      --muted:    #8b949e;
+      --heading:  #e6edf3;
+      --code-bg:  #1f2937;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading);
+      text-decoration: none;
+    }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; margin-left: 1.5rem; }
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .badges { margin-top: 1.8rem; display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .badge span { color: var(--accent); font-weight: 600; }
+    .cta { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--accent); color: #0d1117; }
+    .btn-outline { border: 1px solid var(--border); color: var(--heading); background: var(--surface); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    section h2 {
+      font-size: 1.5rem;
+      color: var(--heading);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    section h3 {
+      font-size: 1.1rem;
+      color: var(--heading);
+      font-weight: 600;
+      margin: 1.8rem 0 0.7rem;
+    }
+
+    /* ── METRIC CARDS ── */
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 600px) { .metric-row { grid-template-columns: 1fr; } }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+    }
+    .metric-card .symbol {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: "Georgia", serif;
+    }
+    .metric-card .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .metric-card .desc {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+
+    /* ── NOTEBOOK CARDS ── */
+    .nb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .nb-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+      transition: border-color 0.2s;
+    }
+    .nb-card:hover { border-color: var(--accent); }
+    .nb-card a { text-decoration: none; color: inherit; display: block; }
+    .nb-card .nb-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .nb-card h3 {
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
+      color: var(--heading);
+    }
+    .nb-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .nb-tag {
+      display: inline-block;
+      background: var(--code-bg);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.78rem;
+      color: var(--accent2);
+      margin-top: 0.7rem;
+    }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.8rem;
+    }
+    th {
+      background: var(--surface);
+      color: var(--muted);
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td {
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    code {
+      background: var(--code-bg);
+      border-radius: 4px;
+      padding: 0.15em 0.45em;
+      font-size: 0.85em;
+      color: #79c0ff;
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-top: 0.8rem;
+    }
+    pre code { background: none; padding: 0; color: var(--text); }
+
+    /* ── PIPELINE ── */
+    .pipeline {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+    .pipeline-step {
+      flex: 1;
+      min-width: 160px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .pipeline-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 1.1rem;
+      z-index: 1;
+    }
+    .pipeline-step:first-child { border-radius: 8px 0 0 8px; }
+    .pipeline-step:last-child  { border-radius: 0 8px 8px 0; }
+    .pipeline-step .num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .pipeline-step .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">MatPES Force Analysis</a>
+  <div>
+    <a href="#notebooks">Notebooks</a>
+    <a href="#models">Models</a>
+    <a href="#data">Data</a>
+    <a href="https://github.com/kamirian/Matpes_analysis">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>MatPES MLIP Force Analysis</h1>
+  <p>
+    A systematic evaluation of machine learning interatomic potentials against
+    DFT forces — measuring not just <em>how large</em> the errors are, but
+    also <em>which direction</em> they point.
+  </p>
+  <div class="badges">
+    <div class="badge"><span>7</span> MLIPs benchmarked</div>
+    <div class="badge"><span>3</span> test sets</div>
+    <div class="badge"><span>~6 M</span> atoms (MatPES)</div>
+    <div class="badge">PBE &amp; r2SCAN functionals</div>
+  </div>
+  <div class="cta">
+    <a class="btn btn-primary" href="https://github.com/kamirian/Matpes_analysis">View on GitHub</a>
+    <a class="btn btn-outline" href="#notebooks">Browse Notebooks</a>
+  </div>
+</div>
+
+<!-- MOTIVATION -->
+<section id="motivation">
+  <h2>Why Two Error Metrics?</h2>
+  <p>
+    Standard force benchmarks collapse everything into a single number — the
+    root-mean-square error of the force vector. This hides an important
+    distinction: a model can predict the right force <em>magnitude</em> while
+    pointing in the completely wrong <em>direction</em>, or vice versa. Both
+    failure modes cause different problems in practice (bad geometry vs. bad
+    dynamics).
+  </p>
+
+  <div class="metric-row">
+    <div class="metric-card">
+      <div class="symbol">|ΔF|</div>
+      <div class="label">Force magnitude error — eV/Å</div>
+      <div class="desc">
+        How far off is the predicted force <em>strength</em>?
+        Drives errors in bond lengths, lattice constants, and relaxation convergence.
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="symbol">|Δθ|</div>
+      <div class="label">Angular error — degrees</div>
+      <div class="desc">
+        How wrong is the predicted force <em>direction</em>?
+        A large angular error drives atoms toward wrong minima even when the
+        magnitude looks reasonable.
+      </div>
+    </div>
+  </div>
+
+  <p>
+    By analyzing both metrics — across force magnitude regimes (near-equilibrium
+    vs. far-from-equilibrium), across models, and across functionals — this work
+    gives a multi-dimensional view of MLIP quality.
+  </p>
+</section>
+
+<!-- ANALYSIS OVERVIEW -->
+<section id="analysis">
+  <h2>Analysis Overview</h2>
+
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="num">①</div>
+      <div class="label">Load per-atom<br>force errors</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="num">②</div>
+      <div class="label">Compute<br>fraction tables</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="num">③</div>
+      <div class="label">Density &amp;<br>CDF plots</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="num">④</div>
+      <div class="label">Regime<br>analysis</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="num">⑤</div>
+      <div class="label">Publication<br>figure</div>
+    </div>
+  </div>
+
+  <h3>Figure types produced</h3>
+  <table>
+    <tr><th>Figure</th><th>Description</th></tr>
+    <tr><td>Split-triangle heatmap</td><td>Fraction of atoms below |ΔF| threshold; lower triangle = also |Δθ| &lt; 1°, upper = |Δθ| &lt; 20°</td></tr>
+    <tr><td>CDF of |ΔF|</td><td>Cumulative distribution across all models with zoomed inset on the high-accuracy tail (CDF &gt; 0.97)</td></tr>
+    <tr><td>CDF of |Δθ|</td><td>Cumulative distribution with inset zoomed around the 35–55° region where models diverge</td></tr>
+    <tr><td>2-D density: |ΔF| vs |Δθ|</td><td>Joint distribution revealing correlation between magnitude and angular errors</td></tr>
+    <tr><td>2-D density: |ΔF| vs F<sub>DFT</sub></td><td>Reveals whether errors grow with the reference force magnitude</td></tr>
+    <tr><td>Regime panels</td><td>Error statistics split by |F<sub>DFT</sub>| &lt; 1 eV/Å (near-eq) vs ≥ 1 eV/Å (far-from-eq)</td></tr>
+    <tr><td>MAE/RMSE heatmaps</td><td>Triangular heatmaps with MAE (lower) and RMSE (upper) conditioned on |F<sub>DFT</sub>| thresholds</td></tr>
+    <tr><td>Error histograms</td><td>Log-log |ΔF| and linear-log |Δθ| histograms for all vs. near-equilibrium atoms</td></tr>
+    <tr><td>Merged overview figure</td><td>6-panel publication-ready layout (crystal structure + density + CDF)</td></tr>
+  </table>
+</section>
+
+<!-- NOTEBOOKS -->
+<section id="notebooks">
+  <h2>Notebooks</h2>
+
+  <h3>Analysis</h3>
+  <div class="nb-grid">
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_mace_matpes.ipynb">
+        <div class="nb-icon">📊</div>
+        <h3>MatPES PBE Analysis</h3>
+        <p>Full analysis of 7 MLIPs against PBE-level DFT forces from the MatPES benchmark (≈ 6 M atoms).</p>
+        <span class="nb-tag">matpes_analysis_mace_matpes.ipynb</span>
+      </a>
+    </div>
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_r2scan.ipynb">
+        <div class="nb-icon">🔬</div>
+        <h3>MatPES r2SCAN Analysis</h3>
+        <p>Same analysis repeated against higher-accuracy r2SCAN DFT forces. Includes r2SCAN-trained MACE and M3GNet variants.</p>
+        <span class="nb-tag">matpes_analysis_r2scan.ipynb</span>
+      </a>
+    </div>
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_mace_matpes_omat.ipynb">
+        <div class="nb-icon">🧪</div>
+        <h3>OMAT24 Rattled-1000 Analysis</h3>
+        <p>Benchmarks on 1 000 OMAT24 structures with random displacements — testing out-of-distribution generalization.</p>
+        <span class="nb-tag">matpes_analysis_mace_matpes_omat.ipynb</span>
+      </a>
+    </div>
+  </div>
+
+  <h3>HPC Job Generators</h3>
+  <div class="nb-grid">
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_run_generator.ipynb">
+        <div class="nb-icon">⚙️</div>
+        <h3>PBE Job Generator</h3>
+        <p>Generates SLURM scripts for evaluating all MLIPs on the MatPES-PBE dataset in parallel on an HPC cluster.</p>
+        <span class="nb-tag">matpes_run_generator.ipynb</span>
+      </a>
+    </div>
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_r2scan_run_generator.ipynb">
+        <div class="nb-icon">⚙️</div>
+        <h3>r2SCAN Job Generator</h3>
+        <p>Same as the PBE generator but targets the MatPES-r2SCAN dataset (<code>FUNCTIONAL_PREFIX = "r2scan"</code>).</p>
+        <span class="nb-tag">matpes_r2scan_run_generator.ipynb</span>
+      </a>
+    </div>
+    <div class="nb-card">
+      <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_run_generator_omat24_rattled1000.ipynb">
+        <div class="nb-icon">⚙️</div>
+        <h3>Rattled-1000 Generator</h3>
+        <p>Reads the OMAT24 rattled-1000 ASE LMDB database, chunks it, and generates SLURM jobs for all potentials at once.</p>
+        <span class="nb-tag">matpes_run_generator_omat24_rattled1000.ipynb</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MODELS -->
+<section id="models">
+  <h2>Models Evaluated</h2>
+  <table>
+    <tr><th>Short Name</th><th>Architecture</th><th>Training Set</th><th>Notes</th></tr>
+    <tr><td>MACE</td><td>MACE</td><td>MPtrj + Alexandria</td><td>Foundation model (MACE-MP-0 medium)</td></tr>
+    <tr><td>CHGNet</td><td>GNN + CHG</td><td>MPtrj</td><td>Uses charge equilibration</td></tr>
+    <tr><td>M3GNet</td><td>M3GNet</td><td>MP-2021.2.8</td><td>MP potential</td></tr>
+    <tr><td>UMA</td><td>eSEN (equivariant)</td><td>OMAT24 + MPtrj + ODAC</td><td>Meta / FAIR foundation model</td></tr>
+    <tr><td>M3GNet-MatPES</td><td>M3GNet</td><td>MatPES-PBE</td><td>MatPES-fine-tuned M3GNet</td></tr>
+    <tr><td>TensorNet-MatPES</td><td>TensorNet</td><td>MatPES-PBE</td><td>MatPES-fine-tuned TensorNet</td></tr>
+    <tr><td>MACE-MatPES</td><td>MACE</td><td>MatPES-PBE</td><td>MatPES-fine-tuned MACE</td></tr>
+  </table>
+  <p style="margin-top:0.8rem; font-size:0.88rem; color:var(--muted);">
+    The r2SCAN notebook additionally evaluates <code>mace_matpes_r2scan</code>,
+    <code>m3gnet_matpes_r2scan</code>, and <code>TensorNET_matpes_R2SCAN</code> — versions
+    fine-tuned on the r2SCAN functional.
+  </p>
+</section>
+
+<!-- DATA -->
+<section id="data">
+  <h2>Data</h2>
+
+  <h3>Files in this repository</h3>
+  <table>
+    <tr><th>File</th><th>Size</th><th>Storage</th><th>Contents</th></tr>
+    <tr><td><code>all_dfs.json</code></td><td>32 KB</td><td>Git</td><td>Per-structure metadata</td></tr>
+    <tr><td><code>atoms_figure.png</code></td><td>131 KB</td><td>Git</td><td>Crystal structure illustration</td></tr>
+    <tr><td><code>R2SCAN/*.json</code></td><td>~520 MB each</td><td>Git LFS</td><td>Per-model r2SCAN force errors</td></tr>
+    <tr><td><code>rattled_1000_results/*.json</code></td><td>~280 MB each</td><td>Git LFS</td><td>Per-model rattled-1000 force errors</td></tr>
+  </table>
+
+  <h3>Externally hosted (too large for Git LFS)</h3>
+  <table>
+    <tr><th>File</th><th>Size</th><th>Contents</th></tr>
+    <tr><td><code>all_results_PBE_all_data.json</code></td><td>~2.9 GB</td><td>Per-atom force errors, all PBE models</td></tr>
+    <tr><td><code>all_results_R2SCAN_all_data.json</code></td><td>~2.2 GB</td><td>Per-atom force errors, all r2SCAN models</td></tr>
+    <tr><td><code>FP_paper_test/all_results_mace_matpes_pbe_PBE.json</code></td><td>~661 MB</td><td>MACE-MatPES PBE results (full MatPES test set)</td></tr>
+  </table>
+
+  <p style="margin-top:0.8rem; font-size:0.88rem; color:var(--muted);">
+    Download links for the externally hosted files will be added here once the data is deposited on Zenodo / HuggingFace Datasets.
+  </p>
+
+  <h3>Data format</h3>
+  <p>Each result JSON has the structure:</p>
+  <pre><code>{
+  "model_name": {
+    "all_F_dft_mags":   [...],  // DFT force magnitudes |F_DFT| in eV/Å
+    "all_deltaF":       [...],  // Force magnitude errors |ΔF| in eV/Å
+    "all_deltaTheta":   [...],  // Angular errors |Δθ| in degrees
+    "original_indices": [...]   // Structure indices in the source dataset
+  }
+}</code></pre>
+
+  <h3>Quick start</h3>
+  <pre><code>git clone git@github.com:kamirian/Matpes_analysis.git
+cd Matpes_analysis
+git lfs pull
+pip install -r requirements.txt
+# Place the externally-hosted JSON files in the repo root, then:
+jupyter notebook matpes_analysis_mace_matpes.ipynb</code></pre>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    Kiyana Amirian · University of Maryland ·
+    <a href="https://github.com/kamirian/Matpes_analysis">github.com/kamirian/Matpes_analysis</a>
+  </p>
+  <p style="margin-top:0.4rem">MIT License · 2025</p>
+</footer>
+
+</body>
+</html>

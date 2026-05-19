@@ -1,0 +1,4 @@
+# Git LFS tracking for large JSON result files (≤ 2 GB each)
+# Run `git lfs install` then `git lfs track` before your first commit.
+R2SCAN/*.json filter=lfs diff=lfs merge=lfs -text
+rattled_1000_results/*.json filter=lfs diff=lfs merge=lfs -text

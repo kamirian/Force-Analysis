@@ -1,0 +1,13 @@
+# Analysis notebooks (matpes_analysis_*.ipynb)
+numpy
+pandas
+matplotlib
+scipy
+
+# Generator notebooks (HPC only — not needed for analysis)
+# pymatgen
+# ase
+# mace-torch          # MACE
+# chgnet              # CHGNet
+# matgl               # M3GNet / TensorNet
+# fairchem-core       # UMA
