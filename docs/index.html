@@ -11,6 +11,7 @@
       --border:   #30363d;
       --accent:   #58a6ff;
       --accent2:  #3fb950;
+      --accent3:  #f78166;
       --text:     #c9d1d9;
       --muted:    #8b949e;
       --heading:  #e6edf3;
@@ -38,12 +39,7 @@
       top: 0;
       z-index: 100;
     }
-    nav .logo {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--heading);
-      text-decoration: none;
-    }
+    nav .logo { font-weight: 700; font-size: 1rem; color: var(--heading); text-decoration: none; }
     nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; margin-left: 1.5rem; }
     nav a:hover { color: var(--accent); }
 
@@ -51,233 +47,96 @@
     .hero {
       text-align: center;
       padding: 5rem 2rem 3.5rem;
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
     }
-    .hero h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      color: var(--heading);
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
-    .hero p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; color: var(--heading); letter-spacing: -0.5px; line-height: 1.2; }
+    .hero p { margin-top: 1rem; font-size: 1.1rem; color: var(--muted); max-width: 640px; margin-left: auto; margin-right: auto; }
     .badges { margin-top: 1.8rem; display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
-    .badge {
-      display: inline-block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .badge { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.82rem; color: var(--muted); }
     .badge span { color: var(--accent); font-weight: 600; }
     .cta { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
+    .btn { display: inline-block; padding: 0.65rem 1.4rem; border-radius: 6px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
     .btn:hover { opacity: 0.85; }
     .btn-primary { background: var(--accent); color: #0d1117; }
     .btn-outline { border: 1px solid var(--border); color: var(--heading); background: var(--surface); }
 
     /* ── SECTIONS ── */
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
+    section { max-width: 920px; margin: 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); }
+    section h2 { font-size: 1.5rem; color: var(--heading); font-weight: 700; margin-bottom: 1.2rem; }
+    section h3 { font-size: 1.05rem; color: var(--heading); font-weight: 600; margin: 1.8rem 0 0.6rem; }
+    section p { color: var(--text); margin-bottom: 0.8rem; }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.4rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+      color: var(--text);
     }
-    section h2 {
-      font-size: 1.5rem;
-      color: var(--heading);
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-    section h3 {
-      font-size: 1.1rem;
-      color: var(--heading);
-      font-weight: 600;
-      margin: 1.8rem 0 0.7rem;
-    }
+    .callout strong { color: var(--heading); }
 
     /* ── METRIC CARDS ── */
-    .metric-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 1.2rem 0;
-    }
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
     @media (max-width: 600px) { .metric-row { grid-template-columns: 1fr; } }
-    .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem 1.6rem;
-    }
-    .metric-card .symbol {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--accent);
-      font-family: "Georgia", serif;
-    }
-    .metric-card .label {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-    .metric-card .desc {
-      font-size: 0.9rem;
-      color: var(--text);
-      margin-top: 0.5rem;
-    }
+    .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; }
+    .metric-card .symbol { font-size: 1.6rem; font-weight: 800; color: var(--accent); font-family: "Georgia", serif; }
+    .metric-card .label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+    .metric-card .desc { font-size: 0.9rem; color: var(--text); margin-top: 0.5rem; }
+
+    /* ── REGIME CARDS ── */
+    .regime-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.2rem 0; }
+    @media (max-width: 700px) { .regime-row { grid-template-columns: 1fr; } }
+    .regime-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; }
+    .regime-card .rtag { display: inline-block; border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .regime-card h3 { font-size: 0.95rem; margin: 0 0 0.4rem; color: var(--heading); }
+    .regime-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+    .tag-green  { background: rgba(63,185,80,0.15);  color: var(--accent2); }
+    .tag-red    { background: rgba(247,129,102,0.15); color: var(--accent3); }
+    .tag-blue   { background: rgba(88,166,255,0.15);  color: var(--accent); }
 
     /* ── NOTEBOOK CARDS ── */
-    .nb-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .nb-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
-      transition: border-color 0.2s;
-    }
+    .nb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .nb-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem; transition: border-color 0.2s; }
     .nb-card:hover { border-color: var(--accent); }
     .nb-card a { text-decoration: none; color: inherit; display: block; }
-    .nb-card .nb-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .nb-card h3 {
-      font-size: 1rem;
-      margin: 0 0 0.4rem;
-      color: var(--heading);
-    }
-    .nb-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .nb-tag {
-      display: inline-block;
-      background: var(--code-bg);
-      border-radius: 4px;
-      padding: 0.15rem 0.5rem;
-      font-size: 0.78rem;
-      color: var(--accent2);
-      margin-top: 0.7rem;
-    }
+    .nb-card .nb-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .nb-card h3 { font-size: 0.95rem; margin: 0 0 0.4rem; color: var(--heading); }
+    .nb-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin: 0; }
+    .nb-tag { display: inline-block; background: var(--code-bg); border-radius: 4px; padding: 0.15rem 0.5rem; font-size: 0.76rem; color: var(--accent2); margin-top: 0.7rem; font-family: monospace; }
+
+    /* ── SCRIPT CARDS ── */
+    .script-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .script-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem 1.4rem; }
+    .script-card .filename { font-family: monospace; font-size: 0.88rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+    .script-card h3 { font-size: 0.95rem; color: var(--heading); margin: 0 0 0.5rem; }
+    .script-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.5; margin: 0; }
+    .script-card ul { font-size: 0.83rem; color: var(--muted); padding-left: 1.1rem; margin-top: 0.4rem; }
+    .script-card li { margin-bottom: 0.2rem; }
 
     /* ── TABLES ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin-top: 0.8rem;
-    }
-    th {
-      background: var(--surface);
-      color: var(--muted);
-      text-align: left;
-      padding: 0.6rem 0.8rem;
-      border-bottom: 1px solid var(--border);
-      font-weight: 600;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    td {
-      padding: 0.55rem 0.8rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 0.8rem; }
+    th { background: var(--surface); color: var(--muted); text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--text); }
     tr:last-child td { border-bottom: none; }
-    code {
-      background: var(--code-bg);
-      border-radius: 4px;
-      padding: 0.15em 0.45em;
-      font-size: 0.85em;
-      color: #79c0ff;
-      font-family: "SFMono-Regular", Consolas, monospace;
-    }
-    pre {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      overflow-x: auto;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      margin-top: 0.8rem;
-    }
+    code { background: var(--code-bg); border-radius: 4px; padding: 0.15em 0.45em; font-size: 0.85em; color: #79c0ff; font-family: "SFMono-Regular", Consolas, monospace; }
+    pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin-top: 0.8rem; }
     pre code { background: none; padding: 0; color: var(--text); }
 
     /* ── PIPELINE ── */
-    .pipeline {
-      display: flex;
-      gap: 0;
-      align-items: stretch;
-      margin: 1.2rem 0;
-      flex-wrap: wrap;
-    }
-    .pipeline-step {
-      flex: 1;
-      min-width: 160px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      text-align: center;
-      position: relative;
-    }
-    .pipeline-step:not(:last-child)::after {
-      content: "→";
-      position: absolute;
-      right: -0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 1.1rem;
-      z-index: 1;
-    }
+    .pipeline { display: flex; gap: 0; align-items: stretch; margin: 1.2rem 0; flex-wrap: wrap; }
+    .pipeline-step { flex: 1; min-width: 130px; background: var(--surface); border: 1px solid var(--border); padding: 1rem; text-align: center; position: relative; }
+    .pipeline-step:not(:last-child)::after { content: "→"; position: absolute; right: -0.8rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1.1rem; z-index: 1; }
     .pipeline-step:first-child { border-radius: 8px 0 0 8px; }
     .pipeline-step:last-child  { border-radius: 0 8px 8px 0; }
-    .pipeline-step .num {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-    .pipeline-step .label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.3rem;
-    }
+    .pipeline-step .num { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+    .pipeline-step .label { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
     footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
@@ -287,8 +146,9 @@
 <nav>
   <a class="logo" href="#">MatPES Force Analysis</a>
   <div>
+    <a href="#motivation">Why</a>
     <a href="#notebooks">Notebooks</a>
-    <a href="#models">Models</a>
+    <a href="#scripts">Code</a>
     <a href="#data">Data</a>
     <a href="https://github.com/kamirian/Matpes_analysis">GitHub</a>
   </div>
@@ -298,15 +158,15 @@
 <div class="hero">
   <h1>MatPES MLIP Force Analysis</h1>
   <p>
-    A systematic evaluation of machine learning interatomic potentials against
-    DFT forces — measuring not just <em>how large</em> the errors are, but
-    also <em>which direction</em> they point.
+    A systematic benchmarking study revealing force prediction errors in MLIPs that
+    are hidden by conventional MAE/RMSE metrics — decomposing accuracy across force
+    magnitude, direction, and physical regime.
   </p>
   <div class="badges">
     <div class="badge"><span>7</span> MLIPs benchmarked</div>
     <div class="badge"><span>3</span> test sets</div>
     <div class="badge"><span>~6 M</span> atoms (MatPES)</div>
-    <div class="badge">PBE &amp; r2SCAN functionals</div>
+    <div class="badge">PBE &amp; r2SCAN</div>
   </div>
   <div class="cta">
     <a class="btn btn-primary" href="https://github.com/kamirian/Matpes_analysis">View on GitHub</a>
@@ -316,14 +176,30 @@
 
 <!-- MOTIVATION -->
 <section id="motivation">
-  <h2>Why Two Error Metrics?</h2>
+  <h2>Why Average Error Is Not Enough</h2>
+
   <p>
-    Standard force benchmarks collapse everything into a single number — the
-    root-mean-square error of the force vector. This hides an important
-    distinction: a model can predict the right force <em>magnitude</em> while
-    pointing in the completely wrong <em>direction</em>, or vice versa. Both
-    failure modes cause different problems in practice (bad geometry vs. bad
-    dynamics).
+    Current MLIP evaluations overwhelmingly rely on a single number — the MAE or RMSE
+    of force magnitude. This is convenient but incomplete. A model with low average error
+    can still fail in ways that matter enormously in practice:
+  </p>
+
+  <div class="callout">
+    <strong>The problem:</strong> A model can predict forces that point in completely wrong
+    directions, or produce catastrophically large errors on a small fraction of atoms —
+    and both failure modes are masked by the average.
+  </div>
+
+  <p>
+    These failures have real consequences. Static relaxations and NEB calculations typically
+    require force convergence of <strong>0.001–0.01 eV/Å</strong>. Misdirected or
+    catastrophically large force predictions during molecular dynamics can destabilize
+    trajectories and produce unphysical atomic dynamics.
+  </p>
+
+  <p>
+    This work addresses the gap by introducing two complementary metrics and
+    analyzing force accuracy across three physically motivated regimes.
   </p>
 
   <div class="metric-row">
@@ -332,25 +208,46 @@
       <div class="label">Force magnitude error — eV/Å</div>
       <div class="desc">
         How far off is the predicted force <em>strength</em>?
-        Drives errors in bond lengths, lattice constants, and relaxation convergence.
+        Drives errors in bond lengths, lattice constants, and energy barriers.
       </div>
     </div>
     <div class="metric-card">
       <div class="symbol">|Δθ|</div>
-      <div class="label">Angular error — degrees</div>
+      <div class="label">Force direction error — degrees</div>
       <div class="desc">
         How wrong is the predicted force <em>direction</em>?
-        A large angular error drives atoms toward wrong minima even when the
-        magnitude looks reasonable.
+        A large angular error pushes atoms toward wrong energy minima
+        even when the magnitude looks acceptable.
       </div>
     </div>
   </div>
 
-  <p>
-    By analyzing both metrics — across force magnitude regimes (near-equilibrium
-    vs. far-from-equilibrium), across models, and across functionals — this work
-    gives a multi-dimensional view of MLIP quality.
-  </p>
+  <h3>Three analysis regimes</h3>
+
+  <div class="regime-row">
+    <div class="regime-card">
+      <div class="rtag tag-green">DFT-substitutable</div>
+      <h3>Highly accurate predictions</h3>
+      <p>|ΔF| &lt; 0.01–0.1 eV/Å <em>and</em> |Δθ| &lt; 1–20°. Required for converged relaxations and reliable NEB barriers. For most current MLIPs, jointly satisfying both criteria is rare.</p>
+    </div>
+    <div class="regime-card">
+      <div class="rtag tag-red">Catastrophic failures</div>
+      <h3>Large-error atoms</h3>
+      <p>|ΔF| &gt; 1–10 eV/Å. Rarely reported by average metrics, but highly consequential — even a small fraction of these can crash an MD simulation or corrupt a trajectory.</p>
+    </div>
+    <div class="regime-card">
+      <div class="rtag tag-blue">Far-from-equilibrium</div>
+      <h3>High-force configurations</h3>
+      <p>|F<sub>DFT</sub>| &gt; 1 eV/Å. About 26.8% of MatPES atoms fall here vs only 6.1% in MPtrj. Most benchmarks are dominated by near-equilibrium atoms and undertest this regime.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Key finding:</strong> The <em>fraction</em> of low-force-error atoms and the
+    <em>fraction</em> of catastrophic-error atoms are more informative metrics than MAE/RMSE
+    alone. The test dataset must include a substantial fraction of far-from-equilibrium atoms
+    to meaningfully evaluate MLIP reliability for applications beyond near-equilibrium relaxation.
+  </div>
 </section>
 
 <!-- ANALYSIS OVERVIEW -->
@@ -364,15 +261,15 @@
     </div>
     <div class="pipeline-step">
       <div class="num">②</div>
-      <div class="label">Compute<br>fraction tables</div>
+      <div class="label">Fraction &amp;<br>MAE/RMSE tables</div>
     </div>
     <div class="pipeline-step">
       <div class="num">③</div>
-      <div class="label">Density &amp;<br>CDF plots</div>
+      <div class="label">2-D density<br>&amp; CDF plots</div>
     </div>
     <div class="pipeline-step">
       <div class="num">④</div>
-      <div class="label">Regime<br>analysis</div>
+      <div class="label">Near-eq vs<br>far-from-eq</div>
     </div>
     <div class="pipeline-step">
       <div class="num">⑤</div>
@@ -383,15 +280,15 @@
   <h3>Figure types produced</h3>
   <table>
     <tr><th>Figure</th><th>Description</th></tr>
-    <tr><td>Split-triangle heatmap</td><td>Fraction of atoms below |ΔF| threshold; lower triangle = also |Δθ| &lt; 1°, upper = |Δθ| &lt; 20°</td></tr>
-    <tr><td>CDF of |ΔF|</td><td>Cumulative distribution across all models with zoomed inset on the high-accuracy tail (CDF &gt; 0.97)</td></tr>
-    <tr><td>CDF of |Δθ|</td><td>Cumulative distribution with inset zoomed around the 35–55° region where models diverge</td></tr>
-    <tr><td>2-D density: |ΔF| vs |Δθ|</td><td>Joint distribution revealing correlation between magnitude and angular errors</td></tr>
-    <tr><td>2-D density: |ΔF| vs F<sub>DFT</sub></td><td>Reveals whether errors grow with the reference force magnitude</td></tr>
-    <tr><td>Regime panels</td><td>Error statistics split by |F<sub>DFT</sub>| &lt; 1 eV/Å (near-eq) vs ≥ 1 eV/Å (far-from-eq)</td></tr>
-    <tr><td>MAE/RMSE heatmaps</td><td>Triangular heatmaps with MAE (lower) and RMSE (upper) conditioned on |F<sub>DFT</sub>| thresholds</td></tr>
-    <tr><td>Error histograms</td><td>Log-log |ΔF| and linear-log |Δθ| histograms for all vs. near-equilibrium atoms</td></tr>
-    <tr><td>Merged overview figure</td><td>6-panel publication-ready layout (crystal structure + density + CDF)</td></tr>
+    <tr><td>Split-triangle heatmap</td><td>Fraction of atoms with |ΔF| below threshold; lower triangle = also |Δθ| &lt; 1°, upper = |Δθ| &lt; 20°. Shows joint magnitude-angle accuracy at a glance.</td></tr>
+    <tr><td>Large-error fraction heatmap</td><td>Fraction of atoms with |ΔF| <em>above</em> threshold (log-scale). The catastrophic-failure metric, invisible to average error.</td></tr>
+    <tr><td>CDF of |ΔF| and |Δθ|</td><td>Full cumulative distributions for all models with zoomed insets — one on the high-accuracy tail (&gt;0.97 CDF), one where model curves diverge most.</td></tr>
+    <tr><td>2-D density: |ΔF| vs |Δθ|</td><td>Joint distribution revealing the correlation (or independence) of magnitude and direction errors.</td></tr>
+    <tr><td>2-D density: error vs F<sub>DFT</sub></td><td>Shows whether errors grow with the DFT reference force — i.e., whether models struggle more on high-force (far-from-equilibrium) atoms.</td></tr>
+    <tr><td>Near-eq / far-from-eq panels</td><td>Error statistics split by |F<sub>DFT</sub>| &lt; 1 eV/Å vs ≥ 1 eV/Å, both absolute and relative error fractions.</td></tr>
+    <tr><td>MAE/RMSE triangular heatmaps</td><td>Lower triangle = MAE, upper = RMSE, conditioned on |F<sub>DFT</sub>| or |ΔF| thresholds. Fraction header row shows how many atoms pass each filter.</td></tr>
+    <tr><td>Error histograms</td><td>Log-log |ΔF| and linear-log |Δθ| histograms, separately for all atoms and the near-equilibrium subset.</td></tr>
+    <tr><td>Merged 6-panel figure</td><td>Crystal structure + three density panels + two CDFs. Publication-ready layout at 350 dpi.</td></tr>
   </table>
 </section>
 
@@ -405,7 +302,7 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_mace_matpes.ipynb">
         <div class="nb-icon">📊</div>
         <h3>MatPES PBE Analysis</h3>
-        <p>Full analysis of 7 MLIPs against PBE-level DFT forces from the MatPES benchmark (≈ 6 M atoms).</p>
+        <p>Full analysis of 7 MLIPs against PBE-level DFT forces (~6 M atoms). All figure types: fraction heatmaps, CDFs, density plots, regime panels, histograms, and the merged overview figure.</p>
         <span class="nb-tag">matpes_analysis_mace_matpes.ipynb</span>
       </a>
     </div>
@@ -413,7 +310,7 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_r2scan.ipynb">
         <div class="nb-icon">🔬</div>
         <h3>MatPES r2SCAN Analysis</h3>
-        <p>Same analysis repeated against higher-accuracy r2SCAN DFT forces. Includes r2SCAN-trained MACE and M3GNet variants.</p>
+        <p>Same analysis against higher-accuracy r2SCAN DFT forces. Includes r2SCAN-trained MACE, M3GNet, and TensorNet variants — directly comparing functional-matched vs. mismatched training.</p>
         <span class="nb-tag">matpes_analysis_r2scan.ipynb</span>
       </a>
     </div>
@@ -421,7 +318,7 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_analysis_mace_matpes_omat.ipynb">
         <div class="nb-icon">🧪</div>
         <h3>OMAT24 Rattled-1000 Analysis</h3>
-        <p>Benchmarks on 1 000 OMAT24 structures with random displacements — testing out-of-distribution generalization.</p>
+        <p>Benchmarks on 1 000 OMAT24 structures with random atomic displacements — testing out-of-distribution generalization. Toggle between MatPES-PBE and rattled-1000 via the <code>DATASET</code> variable.</p>
         <span class="nb-tag">matpes_analysis_mace_matpes_omat.ipynb</span>
       </a>
     </div>
@@ -433,7 +330,7 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_run_generator.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>PBE Job Generator</h3>
-        <p>Generates SLURM scripts for evaluating all MLIPs on the MatPES-PBE dataset in parallel on an HPC cluster.</p>
+        <p>Generates SLURM scripts for evaluating all MLIPs on the MatPES-PBE dataset in parallel. Supports chunked (one job/chunk) and single (one large job) modes.</p>
         <span class="nb-tag">matpes_run_generator.ipynb</span>
       </a>
     </div>
@@ -441,7 +338,7 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_r2scan_run_generator.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>r2SCAN Job Generator</h3>
-        <p>Same as the PBE generator but targets the MatPES-r2SCAN dataset (<code>FUNCTIONAL_PREFIX = "r2scan"</code>).</p>
+        <p>Same workflow as the PBE generator, targeting the MatPES-r2SCAN dataset (<code>FUNCTIONAL_PREFIX = "r2scan"</code>).</p>
         <span class="nb-tag">matpes_r2scan_run_generator.ipynb</span>
       </a>
     </div>
@@ -449,30 +346,80 @@
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/matpes_run_generator_omat24_rattled1000.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>Rattled-1000 Generator</h3>
-        <p>Reads the OMAT24 rattled-1000 ASE LMDB database, chunks it, and generates SLURM jobs for all potentials at once.</p>
+        <p>Reads the OMAT24 rattled-1000 ASE LMDB database, chunks it into 20 pieces, and generates SLURM jobs for all potentials at once (Section 4b).</p>
         <span class="nb-tag">matpes_run_generator_omat24_rattled1000.ipynb</span>
       </a>
     </div>
   </div>
 </section>
 
+<!-- PYTHON SCRIPTS -->
+<section id="scripts">
+  <h2>Analysis Code</h2>
+  <p>
+    The three Python modules contain all the reusable analysis and visualization logic
+    imported by the notebooks. They are designed to be independent of any specific dataset
+    path and operate on plain Python dicts with arrays of per-atom values.
+  </p>
+
+  <div class="script-grid">
+    <div class="script-card">
+      <div class="filename">matpes_frac_analysis.py</div>
+      <h3>Core analysis engine</h3>
+      <p>The computational backbone of all three analysis notebooks. Provides:</p>
+      <ul>
+        <li><strong>Fraction tables</strong> — fraction of atoms with |ΔF| below threshold, optionally joint with |Δθ| criterion</li>
+        <li><strong>Regime panels</strong> — near-equilibrium vs. far-from-equilibrium error statistics</li>
+        <li><strong>Conditioned MAE/RMSE</strong> — error metrics as a function of |F<sub>DFT</sub>| or |Δθ| thresholds</li>
+        <li><strong>Catastrophic-failure analysis</strong> — fraction with |ΔF| above threshold and |F<sub>DFT</sub>| distribution of those atoms</li>
+        <li><strong>Query utilities</strong> — find atoms/structures meeting any combination of |ΔF|, |Δθ|, |F<sub>DFT</sub>| criteria</li>
+        <li><strong>Visualization</strong> — all heatmap and histogram types used in the notebooks</li>
+      </ul>
+    </div>
+    <div class="script-card">
+      <div class="filename">mlip_cdf_density_plots.py</div>
+      <h3>CDF and density visualization</h3>
+      <p>Handles all continuous distribution figures:</p>
+      <ul>
+        <li><strong>CDF computation</strong> — builds CDFs of |ΔF| and |Δθ| for all models, with optional near-eq / far-from-eq split</li>
+        <li><strong>2-D density panels</strong> — joint density heatmaps with marginal histograms for |ΔF|–|Δθ|, |ΔF|–F<sub>DFT</sub>, and |Δθ|–F<sub>DFT</sub></li>
+        <li><strong>CDF plots with inset</strong> — full CDF with automatically placed zoom inset for the high-accuracy tail or model-separation region</li>
+        <li>PCHIP-smoothed CDF curves, log-norm density colormaps, per-model color and linestyle support</li>
+      </ul>
+    </div>
+    <div class="script-card">
+      <div class="filename">heatmap_table.py</div>
+      <h3>Heatmap drawing primitives</h3>
+      <p>
+        Low-level matplotlib code for the custom split-triangle heatmap style used throughout
+        the paper — each cell is divided diagonally, with the lower triangle and upper triangle
+        encoding two different statistics (e.g., |Δθ| &lt; 1° vs &lt; 20°, or MAE vs RMSE).
+      </p>
+      <ul>
+        <li>Cell-level: <code>draw_triangular_cell</code>, <code>draw_rectangular_cell</code></li>
+        <li>Column-level: <code>draw_triangular_column</code>, <code>draw_rectangular_column</code></li>
+        <li>Figure-level: <code>triangular_heatmap_with_fraction_row</code>, <code>plot_fraction_panel</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- MODELS -->
 <section id="models">
-  <h2>Models Evaluated</h2>
+  <h2>Models</h2>
   <table>
-    <tr><th>Short Name</th><th>Architecture</th><th>Training Set</th><th>Notes</th></tr>
+    <tr><th>Name</th><th>Architecture</th><th>Training Set</th><th>Notes</th></tr>
     <tr><td>MACE</td><td>MACE</td><td>MPtrj + Alexandria</td><td>Foundation model (MACE-MP-0 medium)</td></tr>
     <tr><td>CHGNet</td><td>GNN + CHG</td><td>MPtrj</td><td>Uses charge equilibration</td></tr>
     <tr><td>M3GNet</td><td>M3GNet</td><td>MP-2021.2.8</td><td>MP potential</td></tr>
-    <tr><td>UMA</td><td>eSEN (equivariant)</td><td>OMAT24 + MPtrj + ODAC</td><td>Meta / FAIR foundation model</td></tr>
-    <tr><td>M3GNet-MatPES</td><td>M3GNet</td><td>MatPES-PBE</td><td>MatPES-fine-tuned M3GNet</td></tr>
-    <tr><td>TensorNet-MatPES</td><td>TensorNet</td><td>MatPES-PBE</td><td>MatPES-fine-tuned TensorNet</td></tr>
-    <tr><td>MACE-MatPES</td><td>MACE</td><td>MatPES-PBE</td><td>MatPES-fine-tuned MACE</td></tr>
+    <tr><td>UMA</td><td>eSEN</td><td>OMAT24 + MPtrj + ODAC</td><td>Meta / FAIR foundation model</td></tr>
+    <tr><td>M3GNet-MatPES</td><td>M3GNet</td><td>MatPES-PBE</td><td>MatPES fine-tuned</td></tr>
+    <tr><td>TensorNet-MatPES</td><td>TensorNet</td><td>MatPES-PBE</td><td>MatPES fine-tuned</td></tr>
+    <tr><td>MACE-MatPES</td><td>MACE</td><td>MatPES-PBE</td><td>MatPES fine-tuned</td></tr>
   </table>
-  <p style="margin-top:0.8rem; font-size:0.88rem; color:var(--muted);">
+  <p style="margin-top:0.8rem; font-size:0.85rem; color:var(--muted);">
     The r2SCAN notebook additionally evaluates <code>mace_matpes_r2scan</code>,
-    <code>m3gnet_matpes_r2scan</code>, and <code>TensorNET_matpes_R2SCAN</code> — versions
-    fine-tuned on the r2SCAN functional.
+    <code>m3gnet_matpes_r2scan</code>, and <code>TensorNET_matpes_R2SCAN</code>.
   </p>
 </section>
 
@@ -485,35 +432,23 @@
     <tr><th>File</th><th>Size</th><th>Storage</th><th>Contents</th></tr>
     <tr><td><code>all_dfs.json</code></td><td>32 KB</td><td>Git</td><td>Per-structure metadata</td></tr>
     <tr><td><code>atoms_figure.png</code></td><td>131 KB</td><td>Git</td><td>Crystal structure illustration</td></tr>
-    <tr><td><code>R2SCAN/*.json</code></td><td>~520 MB each</td><td>Git LFS</td><td>Per-model r2SCAN force errors</td></tr>
-    <tr><td><code>rattled_1000_results/*.json</code></td><td>~280 MB each</td><td>Git LFS</td><td>Per-model rattled-1000 force errors</td></tr>
+    <tr><td><code>R2SCAN/*.json</code></td><td>~520 MB each</td><td>Git LFS</td><td>Per-model r2SCAN force errors (4 models)</td></tr>
+    <tr><td><code>rattled_1000_results/*.json</code></td><td>~280 MB each</td><td>Git LFS</td><td>Per-model rattled-1000 force errors (7 models)</td></tr>
   </table>
 
-  <h3>Externally hosted (too large for Git LFS)</h3>
+  <h3>Externally hosted (exceed Git LFS 2 GB limit)</h3>
   <table>
     <tr><th>File</th><th>Size</th><th>Contents</th></tr>
-    <tr><td><code>all_results_PBE_all_data.json</code></td><td>~2.9 GB</td><td>Per-atom force errors, all PBE models</td></tr>
-    <tr><td><code>all_results_R2SCAN_all_data.json</code></td><td>~2.2 GB</td><td>Per-atom force errors, all r2SCAN models</td></tr>
-    <tr><td><code>FP_paper_test/all_results_mace_matpes_pbe_PBE.json</code></td><td>~661 MB</td><td>MACE-MatPES PBE results (full MatPES test set)</td></tr>
+    <tr><td><code>all_results_PBE_all_data.json</code></td><td>~2.9 GB</td><td>Per-atom force errors, all PBE models on MatPES</td></tr>
+    <tr><td><code>all_results_R2SCAN_all_data.json</code></td><td>~2.2 GB</td><td>Per-atom force errors, all r2SCAN models on MatPES</td></tr>
+    <tr><td><code>FP_paper_test/all_results_mace_matpes_pbe_PBE.json</code></td><td>~661 MB</td><td>MACE-MatPES full PBE results</td></tr>
   </table>
-
-  <p style="margin-top:0.8rem; font-size:0.88rem; color:var(--muted);">
-    Download links for the externally hosted files will be added here once the data is deposited on Zenodo / HuggingFace Datasets.
+  <p style="margin-top:0.7rem; font-size:0.85rem; color:var(--muted);">
+    Download links will be added here once data is deposited on Zenodo / HuggingFace Datasets.
   </p>
 
-  <h3>Data format</h3>
-  <p>Each result JSON has the structure:</p>
-  <pre><code>{
-  "model_name": {
-    "all_F_dft_mags":   [...],  // DFT force magnitudes |F_DFT| in eV/Å
-    "all_deltaF":       [...],  // Force magnitude errors |ΔF| in eV/Å
-    "all_deltaTheta":   [...],  // Angular errors |Δθ| in degrees
-    "original_indices": [...]   // Structure indices in the source dataset
-  }
-}</code></pre>
-
   <h3>Quick start</h3>
-  <pre><code>git clone git@github.com:kamirian/Matpes_analysis.git
+  <pre><code>git clone https://github.com/kamirian/Matpes_analysis.git
 cd Matpes_analysis
 git lfs pull
 pip install -r requirements.txt
