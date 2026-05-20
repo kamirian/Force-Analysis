@@ -332,7 +332,7 @@ If you use this code or analysis in your work, please cite:
 ```bibtex
 @misc{amirian2025matpes,
   author = {Kiyan Amirian, Yifei Mo},
-  title  = {MatPES FP Force Analysis},
+  title  = {FP Force Analysis},
   year   = {2025},
   url    = {https://github.com/kamirian/Matpes_analysis}
 }
