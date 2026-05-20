@@ -208,7 +208,7 @@ All notebooks use relative paths from their subdirectory — run them from `anal
 
 ## Dataset Chunking & Job Generators
 
-The notebooks in `generate/` handle two things: (1) splitting a large dataset into chunks suitable for parallel HPC evaluation, and (2) generating self-contained SLURM job scripts for each MLIP × chunk combination. They are **not needed to reproduce the analysis** — only to regenerate raw result JSON files or evaluate on a new dataset.
+The notebooks in `generate/` handle two things: (1) splitting a large dataset into chunks for parallel HPC evaluation, and (2) generating self-contained SLURM scripts for each MLIP × chunk combination. They are **not needed to reproduce the analysis** — only to regenerate raw results or evaluate a new dataset.
 
 | Notebook | Dataset used | Output |
 |----------|-------------|--------|
@@ -216,53 +216,97 @@ The notebooks in `generate/` handle two things: (1) splitting a large dataset in
 | `generate/run_r2scan.ipynb` | MatPES-r2SCAN (`.json.gz`) | `all_results_{mlip}_r2SCAN.json` |
 | `generate/run_omat24_rattled.ipynb` | OMAT24 Rattled-1000 (`.tar.gz` / `.aselmdb`) | `all_results_{mlip}_PBE.json` |
 
-### General-purpose pipeline — works for any dataset
+### What the pipeline needs from your dataset
 
-The chunking and job-generation pipeline is dataset-agnostic. It requires only that each structure has **atomic forces** and a **crystal structure** (positions + lattice). The workflow is:
+The only requirement is that each entry in your dataset contains:
+- **Atomic structure** — species, positions, and lattice vectors (unit cell)
+- **DFT forces** — one force vector per atom (eV/Å)
+- **Energy** — total DFT energy for the structure (eV)
 
-```
-1. Set CHUNK_DATASET_PATH, CHUNK_BASE_DIR, CHUNK_N in the notebook
-2. Run the chunking cell → writes chunk00/…/chunkNN as compressed JSON
-3. Run the SLURM generator cell → writes code_chunk_*/ directories + mass_submit.sh
-4. rsync the generate/ output to your cluster
-5. bash mass_submit.sh   (submits one job per MLIP × chunk)
-6. Merge chunk outputs → single all_results_{mlip}.json per model
-```
+The pipeline reads the structures, runs MLIP single-point evaluations on each one using ASE, and records the force vectors predicted by the MLIP. The force errors (|ΔF|, |Δθ|) are computed by comparing MLIP and DFT forces atom by atom.
 
 #### Supported input formats
 
 | Format | Extension | Notes |
 |--------|-----------|-------|
-| MatPES / generic JSON | `.json` | Must contain a list of entries with `forces`, `energy`, `structure` |
-| Compressed JSON | `.json.gz` | Same schema, gzip-compressed |
-| Extended XYZ | `.xyz` | Parsed with ASE; label inferred from filename |
-| OMAT24 LMDB | `.tar.gz` / `.aselmdb` | Requires `ase-db-backends`; extracted automatically |
+| Extended XYZ | `.xyz` | Most common; parsed with ASE. Forces must be stored as the `forces` array property. |
+| Compressed JSON | `.json.gz` | MatPES native format; list of entries with `forces`, `energy`, `structure` fields |
+| Plain JSON | `.json` | Same schema as `.json.gz`, uncompressed |
+| OMAT24 LMDB | `.tar.gz` / `.aselmdb` | Requires `ase-db-backends`; archive extracted automatically |
 
-#### Key configuration parameters
+### Workflow — step by step
 
-```python
-CHUNK_DATASET_PATH = "/path/to/your_dataset.xyz"   # input file
-CHUNK_BASE_DIR     = "/path/to/chunks/"             # where chunks are written
-CHUNK_N            = 20        # number of parallel chunks (= number of SLURM jobs per model)
-CHUNK_FUNCTIONAL   = None      # label prefix for chunk filenames; None → inferred from file/data
-CHUNK_N_MAX        = None      # cap total entries (None = use all)
+```
+1. Chunk the dataset
+   Set CHUNK_DATASET_PATH, CHUNK_BASE_DIR, CHUNK_N in Section 0 of the notebook
+   and run the chunking cell. This writes chunk00/ … chunkNN/ as compressed JSON files.
+
+2. Register your MLIPs
+   In Section 2 (POTENTIAL_REGISTRY), add an entry for each model you want to evaluate.
+   Each entry specifies the venv to activate, the Python executable, the model path,
+   and a short snippet of code that instantiates an ASE Calculator (see below).
+
+3. Generate SLURM scripts
+   Run Section 4. This writes code_chunk_*/ directories (one per chunk × MLIP)
+   and a top-level mass_submit.sh that submits all jobs in one command.
+
+4. Transfer to cluster and submit
+   rsync the generated directories to your HPC cluster, then:
+   bash mass_submit.sh
+
+5. Merge results
+   After all jobs finish, run Section 5 (merge cell) to combine per-chunk outputs
+   into a single all_results_{mlip}.json per model, ready for the analysis notebooks.
 ```
 
-Set `CHUNK_N` to the number of parallel jobs you want per MLIP. Each chunk gets its own SLURM script. `CHUNK_FUNCTIONAL` is used as a filename prefix (e.g. `"pbe"`, `"r2scan"`, `"lyc"`); if `None`, it is inferred from the `functional` field in the data or from the filename.
+#### Key chunking parameters
 
-### Example: LYC dataset
+```python
+CHUNK_DATASET_PATH = "/path/to/your_dataset.xyz"   # path to input file
+CHUNK_BASE_DIR     = "/path/to/chunks/"             # output directory for chunks
+CHUNK_N            = 20        # number of chunks → number of parallel SLURM jobs per MLIP
+CHUNK_FUNCTIONAL   = None      # filename label (e.g. "pbe", "lyc"); None → inferred automatically
+CHUNK_N_MAX        = None      # use only first N entries; None → use all
+```
 
-The LYC dataset (Li–Y–Cl solid electrolyte) is an `.xyz` file. To evaluate a fine-tuned MACE model on it:
+Choose `CHUNK_N` based on your cluster's queue and dataset size. For ~300k structures and 20 chunks, each job processes ~15k structures — a few hours per MLIP on a single CPU node.
+
+### Per-MLIP environments
+
+Each MLIP requires its own Python virtual environment with the relevant package installed. The `POTENTIAL_REGISTRY` in each generator notebook shows exactly how each model is set up. The key fields are:
+
+```python
+"my_mlip": {
+    "venv_activate":   "/path/to/venv/bin/activate",   # venv to source before running
+    "python":          "/path/to/venv/bin/python",      # Python executable in that venv
+    "model_path":      "/path/to/model.pt",             # model weights (or None if built-in)
+    "calc_setup_code": "from mypackage import MyCalc\ncalc = MyCalc(MODEL_PATH)",
+}
+```
+
+The packages used for each MLIP in this study, and their install commands, are:
+
+| MLIP | Package | Install |
+|------|---------|---------|
+| MACE-MP0 / MACE-MatPES | `mace-torch` | `pip install mace-torch` |
+| CHGNet | `chgnet` | `pip install chgnet` |
+| M3GNet / TensorNet | `matgl` | `pip install matgl` |
+| UMA (Meta) | `fairchem-core` | `pip install fairchem-core` |
+
+Each venv also needs `pymatgen` and `ase` for structure handling. We recommend separate venvs per MLIP to avoid dependency conflicts. The exact environment setup we used on the cluster is shown in each generator notebook.
+
+### Example: LYC dataset (Li–Y–Cl solid electrolyte)
+
+The LYC dataset is an `.xyz` file with DFT forces. We used 5 chunks to evaluate MACE-MP0 baseline and four fine-tuned variants (different training set sizes and channel widths):
 
 ```python
 CHUNK_DATASET_PATH = "/path/to/full_dataset_corrected.xyz"
 CHUNK_BASE_DIR     = "/path/to/LYC_chunks/"
-CHUNK_N            = 5          # small dataset → 5 chunks is enough
-CHUNK_FUNCTIONAL   = None       # inferred as "full_dataset" from filename
-CHUNK_N_MAX        = None
+CHUNK_N            = 5          # small dataset → 5 parallel jobs is enough
+CHUNK_FUNCTIONAL   = None       # auto-inferred as "full_dataset" from filename
 ```
 
-The resulting analysis (force errors of MACE-MP0 baseline vs. fine-tuned variants at different training sizes) is in `examples/lyc/analysis_lyc.ipynb`, with pre-computed results in `examples/lyc/results/`.
+Pre-computed results and the full analysis are in `examples/lyc/`.
 
 ---
 
