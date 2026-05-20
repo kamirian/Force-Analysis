@@ -1,68 +1,87 @@
 # MatPES MLIP Force Analysis
 
-A systematic study of force prediction accuracy in machine learning interatomic potentials (MLIPs), evaluated against DFT forces from the [MatPES](https://github.com/materialsvirtuallab/matpes) dataset. The central argument: **MAE/RMSE of force magnitude alone is an incomplete benchmark** — it masks failure modes that matter in practice.
+A systematic study of force prediction accuracy in machine learning interatomic potentials (MLIPs),
+evaluated against DFT forces from the [MatPES](https://github.com/materialsvirtuallab/matpes) dataset.
+The central argument: **total average error (MAE/RMSE) alone is an incomplete benchmark** because it
+is diluted by the large fraction of near-equilibrium atoms, masking failure modes that matter in
+realistic simulations.
 
 ---
 
 ## Motivation
 
-Current MLIP evaluations overwhelmingly focus on average force magnitude error (MAE/RMSE of |ΔF|). This captures only part of the picture. A model can achieve low MAE while still:
+Current MLIP evaluations often focus on total average error: MAE/RMSE of force magnitude |ΔF| across
+all atoms. While useful, these metrics only capture part of the picture. A model can achieve low
+average error while still:
 
-- Predicting forces that point in completely wrong directions (high angular error |Δθ|)
-- Producing catastrophically large errors on a small but consequential fraction of atoms
-- Performing well on near-equilibrium atoms while failing on far-from-equilibrium configurations
+- Predicting forces with incorrect directions, leading to large force angle errors |Δθ|
+- Producing rare but severe large force-magnitude errors
+- Performing well near equilibrium while failing on far-from-equilibrium (FE) configurations
 
-These failures matter because **force accuracy requirements in practice are strict**. Static relaxations and NEB calculations typically require force convergence of 0.001–0.01 eV/Å. Large or misdirected force errors during molecular dynamics can lead to unphysical atomic trajectories and simulation crashes.
+These failure modes matter because force errors directly affect atomistic simulations. In molecular
+dynamics, large or misdirected forces lead to unphysical atomic trajectories, unstable simulations,
+or crashes. In static relaxations and NEB calculations, force accuracy requirements are strict, with
+typical convergence thresholds of 0.001–0.01 eV/Å. The near-equilibrium majority of atoms in most
+datasets dilutes these failures in the reported average, making a model appear more reliable than it is.
 
-This work addresses the gap by decomposing MLIP force accuracy across **three regimes**:
+This work addresses that gap by evaluating force accuracy across three regimes:
 
 | Regime | Definition | Why it matters |
 |--------|-----------|----------------|
-| DFT-substitutable | \|ΔF\| < 0.01–0.1 eV/Å and \|Δθ\| < 1–20° | Required for converged relaxations and reliable NEB barriers |
-| Catastrophic failures | \|ΔF\| > 1–10 eV/Å | Can destabilize MD trajectories; rarely reported by average metrics |
-| Far-from-equilibrium | \|F\_DFT\| > 1 eV/Å | ~26.8% of MatPES atoms vs ~6.1% of MPtrj — most benchmarks underrepresent this regime |
-
-**Key findings:**
-
-- For most current MLIPs, jointly accurate predictions (both low |ΔF| **and** low |Δθ|) are rare
-- The **fraction of low-force-error atoms** is a more informative metric than MAE/RMSE alone
-- The **fraction of large-error atoms** is a distinct, equally important metric — catastrophic failures are hidden by averaging
-- Whether a model handles far-from-equilibrium atoms well depends heavily on whether the training data included them — the MatPES dataset was explicitly designed to sample these configurations
+| Highly accurate & joint magnitude-angle accuracy | \|ΔF\| < 0.01 eV/Å and \|Δθ\| < 1–20° | Measures the fraction of predictions accurate enough for strict simulation settings; force convergence criteria in relaxations and NEB are typically 0.001–0.01 eV/Å |
+| Large force-magnitude errors | \|ΔF\| > 0.5–10 eV/Å | Rare but catastrophic: a single severely erroneous force during MD can destabilize a trajectory or cause simulation failure, yet never appears in a reported average |
+| Far-from-equilibrium (FE) atoms | \|F_DFT\| ≥ 1 eV/Å | Tests reliability on transition states, migration pathways, and rattled or strained structures — configurations that matter most for NEB and high-temperature MD. FE atoms make up ~26.8% of MatPES vs ~6.1% of MPTrj |
 
 ---
 
 ## Metrics
 
-| Metric | Symbol | Unit | What it captures |
-|--------|--------|------|-----------------|
-| Force magnitude error | \|ΔF\| | eV/Å | How far off is the predicted force *strength*? |
-| Force direction error | \|Δθ\| | degrees | How wrong is the predicted force *direction*? |
+To move beyond total average error, we evaluate five complementary metrics across all models:
 
-These two metrics are complementary — a model can fail on one while appearing fine on the other. Analyzing their joint distribution reveals failure modes that neither metric alone can expose.
+| Metric | Definition | Why it matters |
+|--------|-----------|----------------|
+| Total average error | MAE/RMSE of \|ΔF\| and \|Δθ\| across all atoms | Baseline comparison; subject to dilution by the large fraction of near-equilibrium atoms |
+| Highly accurate magnitude predictions | Fraction of atoms with \|ΔF\| < 0.01 eV/Å | Directly relevant to force convergence criteria in static relaxations and NEB |
+| Large force-magnitude errors | Fraction of atoms with \|ΔF\| > 0.5–10 eV/Å | Rare but catastrophic; destabilizes MD trajectories and causes simulation failures |
+| Far-from-equilibrium (FE) atoms | MAE/RMSE for atoms with \|F_DFT\| ≥ 1 eV/Å (26.8% of MatPES) | Probes reliability on transition states and migration pathways, which are underrepresented in near-equilibrium datasets like MPTrj (~6.1%) |
+| Joint magnitude-angle accuracy | Fraction of atoms with \|ΔF\| < 0.01 eV/Å and \|Δθ\| < 1° or 20° | Captures simultaneous accuracy in both force magnitude and direction; neither alone is sufficient |
 
 ---
 
 ## Test Sets
 
-| Dataset | Functional | # atoms | Description |
-|---------|-----------|---------|-------------|
-| MatPES-PBE | PBE | ~6 M | Main benchmark; 26.8% far-from-equilibrium atoms |
-| MatPES-r2SCAN | r2SCAN | ~6 M | Higher-accuracy references; same structures |
-| OMAT24 rattled-1000 | PBE | ~300 K | 1 000 OMAT24 structures with random displacements |
+| Dataset | Functional | Structures | Atoms (M) | Description |
+|---------|-----------|-----------|-----------|-------------|
+| MatPES-PBE | PBE | 433,189 | 3.87 | Main benchmark; diverse stable, strained, and perturbed configurations across a broad chemical space. 26.8% of atoms are far-from-equilibrium (\|F_DFT\| ≥ 1 eV/Å) |
+| rattled-1000 | PBE | 117,004 | 1.66 | Subset of OMat24; structures generated by Boltzmann sampling of rattled configurations at 1000 K (random Gaussian atomic displacements and cell deformations). Used as an out-of-distribution validation set to probe model robustness on non-equilibrium configurations. |
+| MatPES-R2SCAN | r2SCAN | 386,544 | 3.05 | Higher-accuracy functional; same structures as MatPES-PBE |
+
+The r2SCAN results also include `mace_matpes_r2scan`, `m3gnet_matpes_r2scan`, and
+`TensorNET_matpes_R2SCAN` — variants fine-tuned on the r2SCAN functional.
 
 ## Models Evaluated
 
-| Model | Architecture | Training set |
-|-------|-------------|-------------|
-| MACE (MACE-MP-0 medium) | MACE | MPtrj + Alexandria |
-| CHGNet | GNN + charge | MPtrj |
-| M3GNet | M3GNet | MP-2021.2.8 |
-| UMA (uma-s-1p1) | eSEN | OMAT24 + MPtrj + ODAC |
-| M3GNet-MatPES | M3GNet | MatPES-PBE |
-| TensorNet-MatPES | TensorNet | MatPES-PBE |
-| MACE-MatPES | MACE | MatPES-PBE |
+### PBE Dataset
 
-The r2SCAN notebook also evaluates `mace_matpes_r2scan`, `m3gnet_matpes_r2scan`, and `TensorNET_matpes_R2SCAN` — variants fine-tuned on the r2SCAN functional.
+| Model | Version | Architecture | Training Set | Training Set Size |
+|-------|---------|-------------|-------------|------------------|
+| MACE-MP-0 (medium) | ≥v0.3.10 | MACE | MPTrj + sAlex | ~3.5M |
+| CHGNet | v0.3.0 | GNN + charge | MPTrj | ~1.58M |
+| M3GNet | MP-2021.2.8-PES | M3GNet | MP-2021.2.8 | ~176.6K |
+| UMA (uma-s-1p1) | v1.1 | eSEN | OC20 + ODAC23 + OMat24 + OMC25 + OMol25 | ~500M |
+| M3GNet-MatPES-PBE | v2025.1 | M3GNet | MatPES-PBE | ~435K |
+| TensorNet-MatPES-PBE | v2025.1 | TensorNet | MatPES-PBE | ~435K |
+| MACE-MatPES-PBE | ≥v0.3.10 | MACE | OMAT-0 fine-tuned on MatPES-PBE | ~435K |
+
+### R2SCAN Dataset
+
+| Model | Version | Architecture | Training Set | Training Set Size |
+|-------|---------|-------------|-------------|------------------|
+| M3GNet-MatPES-R2SCAN | v2025.1 | M3GNet | MatPES-R2SCAN | 386,544 structures (3.05M atoms) |
+| TensorNet-MatPES-R2SCAN | v2025.1 | TensorNet | MatPES-R2SCAN | 386,544 structures (3.05M atoms) |
+| MACE-MatPES-R2SCAN | ≥v0.3.10 | MACE | MatPES-R2SCAN | 386,544 structures (3.05M atoms) |
+
+All models were used as released, without additional fine-tuning or retraining.
 
 ---
 
@@ -87,32 +106,39 @@ The notebooks produce a rich set of publication-quality figures:
 MatPES_force_analysis/
 │
 │  ── Analysis notebooks ──
-├── matpes_analysis_mace_matpes.ipynb          # PBE analysis: MatPES & rattled-1000
-├── matpes_analysis_r2scan.ipynb               # r2SCAN analysis
-├── matpes_analysis_mace_matpes_omat.ipynb     # OMAT24 rattled-1000 analysis
+├── analysis/
+│   ├── pbe_matpes.ipynb          # PBE analysis: MatPES & rattled-1000
+│   ├── r2scan.ipynb              # r2SCAN analysis
+│   └── omat24_rattled.ipynb      # OMAT24 rattled-1000 analysis
 │
 │  ── HPC job generators (re-run evaluations on cluster) ──
-├── matpes_run_generator.ipynb                 # MatPES-PBE SLURM generator
-├── matpes_r2scan_run_generator.ipynb          # MatPES-r2SCAN SLURM generator
-├── matpes_run_generator_omat24_rattled1000.ipynb  # Rattled-1000 SLURM generator
+├── hpc/
+│   ├── run_pbe.ipynb             # MatPES-PBE SLURM generator
+│   ├── run_r2scan.ipynb          # MatPES-r2SCAN SLURM generator
+│   └── run_omat24_rattled.ipynb  # Rattled-1000 SLURM generator
 │
 │  ── Python utility modules ──
-├── matpes_frac_analysis.py     # Core analysis: fraction tables, MAE/RMSE, regime panels, heatmaps
-├── mlip_cdf_density_plots.py   # CDF computation and 2-D density plotting
-├── heatmap_table.py            # Low-level heatmap drawing primitives (triangular cells, colorbars)
+├── scripts/
+│   ├── matpes_frac_analysis.py   # Core analysis: fraction tables, MAE/RMSE, regime panels, heatmaps
+│   ├── mlip_cdf_density_plots.py # CDF computation and 2-D density plotting
+│   └── heatmap_table.py          # Low-level heatmap drawing primitives (triangular cells, colorbars)
 │
 │  ── Data ──
-├── atoms_figure.png                           # Crystal structure visualization
-├── all_dfs.json                               # Per-structure metadata (32 KB)
-├── R2SCAN/                                    # Per-model r2SCAN results (~520 MB each — Git LFS)
-└── rattled_1000_results/                      # Per-model rattled-1000 results (~280 MB each — Git LFS)
+├── data/
+│   ├── atoms_figure.png                         # Crystal structure visualization
+│   ├── all_dfs.json                             # Per-structure metadata (32 KB)
+│   ├── R2SCAN/                                  # Per-model r2SCAN results (~520 MB each — Git LFS)
+│   └── rattled_1000_results/                    # Per-model rattled-1000 results (~280 MB each — Git LFS)
+│
+├── docs/index.html
+└── requirements.txt
 ```
 
 ---
 
 ## Python Modules
 
-### `matpes_frac_analysis.py` — Core analysis engine
+### `scripts/matpes_frac_analysis.py` — Core analysis engine
 
 The computational backbone of all three analysis notebooks. Provides:
 
@@ -123,7 +149,7 @@ The computational backbone of all three analysis notebooks. Provides:
 - **Visualization** — `split_triangle_heatmap`, `single_heatmap`, `plot_error_histograms`, `plot_fraction_panel`: all figure types used in the notebooks
 - **Querying** — `get_bad_atom_indices`, `get_bad_structure_indices`: find atoms/structures meeting any combination of |ΔF|, |Δθ|, and |F\_DFT| criteria
 
-### `mlip_cdf_density_plots.py` — CDF and density visualization
+### `scripts/mlip_cdf_density_plots.py` — CDF and density visualization
 
 Handles the continuous distribution figures:
 
@@ -131,7 +157,7 @@ Handles the continuous distribution figures:
 - **2-D density panels** — `panel_abs_dF_vs_dtheta_cond_on_Fdft`, `panel_Fdft_vs_abs_dF`, `panel_Fdft_vs_dtheta`: joint density heatmaps with marginal histograms, PCHIP-smoothed CDFs
 - **CDF plots** — `plot_cdf_with_inset_on_ax`: full CDF with automatically placed inset zoom for the high-accuracy tail or model-separation region
 
-### `heatmap_table.py` — Heatmap drawing primitives
+### `scripts/heatmap_table.py` — Heatmap drawing primitives
 
 Low-level matplotlib code for the custom split-triangle heatmap style used throughout the paper. Provides `draw_triangular_cell`, `draw_rectangular_column`, `add_colorbar`, and the high-level `triangular_heatmap_with_fraction_row` that assembles a complete publication-style heatmap table.
 
@@ -142,16 +168,18 @@ Low-level matplotlib code for the custom split-triangle heatmap style used throu
 ### Files tracked by Git LFS
 
 ```bash
-git lfs pull   # download R2SCAN/ and rattled_1000_results/ after cloning
+git lfs pull   # download data/R2SCAN/ and data/rattled_1000_results/ after cloning
 ```
 
 ### Large files hosted externally (> 2 GB — beyond Git LFS limit)
 
+Place these in `data/` after downloading:
+
 | File | Size | Contents |
 |------|------|----------|
-| `all_results_PBE_all_data.json` | ~2.9 GB | Per-atom force errors, all PBE models |
-| `all_results_R2SCAN_all_data.json` | ~2.2 GB | Per-atom force errors, all r2SCAN models |
-| `FP_paper_test/all_results_mace_matpes_pbe_PBE.json` | ~661 MB | MACE-MatPES full PBE results |
+| `data/all_results_PBE_all_data.json` | ~2.9 GB | Per-atom force errors, all PBE models |
+| `data/all_results_R2SCAN_all_data.json` | ~2.2 GB | Per-atom force errors, all r2SCAN models |
+| `data/FP_paper_test/all_results_mace_matpes_pbe_PBE.json` | ~661 MB | MACE-MatPES full PBE results |
 
 > Download links will be added here once the data is deposited on Zenodo / HuggingFace Datasets.
 
@@ -165,23 +193,23 @@ cd Matpes_analysis
 git lfs pull
 pip install -r requirements.txt
 
-# Place the externally-hosted JSON files in the repo root, then:
-jupyter notebook matpes_analysis_mace_matpes.ipynb
+# Place the externally-hosted JSON files in data/, then:
+jupyter notebook analysis/pbe_matpes.ipynb
 ```
 
-All notebooks use relative paths — no path changes needed as long as you run from the repo root.
+All notebooks use relative paths from their subdirectory — run them from `analysis/` or open with Jupyter from the repo root.
 
 ---
 
 ## HPC Job Generators
 
-The generator notebooks produce SLURM scripts for re-running MLIP evaluations on a cluster. They are **not needed to reproduce the analysis** — only to regenerate raw result JSON files.
+The generator notebooks in `hpc/` produce SLURM scripts for re-running MLIP evaluations on a cluster. They are **not needed to reproduce the analysis** — only to regenerate raw result JSON files.
 
 | Notebook | Dataset | Output |
 |----------|---------|--------|
-| `matpes_run_generator.ipynb` | MatPES-PBE | `all_results_{mlip}_PBE.json` |
-| `matpes_r2scan_run_generator.ipynb` | MatPES-r2SCAN | `all_results_{mlip}_r2SCAN.json` |
-| `matpes_run_generator_omat24_rattled1000.ipynb` | Rattled-1000 | `all_results_{mlip}_PBE.json` |
+| `hpc/run_pbe.ipynb` | MatPES-PBE | `all_results_{mlip}_PBE.json` |
+| `hpc/run_r2scan.ipynb` | MatPES-r2SCAN | `all_results_{mlip}_r2SCAN.json` |
+| `hpc/run_omat24_rattled.ipynb` | Rattled-1000 | `all_results_{mlip}_PBE.json` |
 
 Workflow: chunk dataset → generate scripts → `rsync` to cluster → `bash mass_submit.sh` → merge outputs.
 

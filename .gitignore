@@ -14,10 +14,13 @@ venv/
 .ipynb_checkpoints/
 
 # Very large data files — host on Zenodo / HuggingFace and download via README instructions
-# (Git LFS 2 GB per-file limit exceeded for these)
+# (Git LFS 2 GB per-file limit exceeded for these; place in data/ after downloading)
 all_results_PBE_all_data.json
 all_results_R2SCAN_all_data.json
-FP_paper_test/all_results_mace_matpes_pbe_PBE.json
+FP_paper_test/
+data/all_results_PBE_all_data.json
+data/all_results_R2SCAN_all_data.json
+data/FP_paper_test/
 
 # Generated SLURM/HPC artefacts
 code_chunk_*/
