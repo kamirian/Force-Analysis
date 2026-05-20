@@ -1,6 +1,6 @@
-# MatPES MLIP Force Analysis
+# MatPES FP Force Analysis
 
-A systematic study of force prediction accuracy in machine learning interatomic potentials (MLIPs),
+A systematic study of force prediction accuracy in foundation potentials (FPs — general-purpose machine learning interatomic potentials),
 evaluated against DFT forces from the [MatPES](https://github.com/materialsvirtuallab/matpes) dataset.
 The central argument: **total average error (MAE/RMSE) alone is an incomplete benchmark** because it
 is diluted by the large fraction of near-equilibrium atoms, masking failure modes that matter in
@@ -10,7 +10,7 @@ realistic simulations.
 
 ## Motivation
 
-Current MLIP evaluations often focus on total average error: MAE/RMSE of force magnitude |ΔF| across
+Current FP evaluations often focus on total average error: MAE/RMSE of force magnitude |ΔF| across
 all atoms. While useful, these metrics only capture part of the picture. A model can achieve low
 average error while still:
 
@@ -208,7 +208,7 @@ All notebooks use relative paths from their subdirectory — run them from `anal
 
 ## Dataset Chunking & Job Generators
 
-The notebooks in `generate/` handle two things: (1) splitting a large dataset into chunks for parallel HPC evaluation, and (2) generating self-contained SLURM scripts for each MLIP × chunk combination. They are **not needed to reproduce the analysis** — only to regenerate raw results or evaluate a new dataset.
+The notebooks in `generate/` handle two things: (1) splitting a large dataset into chunks for parallel HPC evaluation, and (2) generating self-contained SLURM scripts for each FP × chunk combination. They are **not needed to reproduce the analysis** — only to regenerate raw results or evaluate a new dataset.
 
 | Notebook | Dataset used | Output |
 |----------|-------------|--------|
@@ -223,7 +223,7 @@ The only requirement is that each entry in your dataset contains:
 - **DFT forces** — one force vector per atom (eV/Å)
 - **Energy** — total DFT energy for the structure (eV)
 
-The pipeline reads the structures, runs MLIP single-point evaluations on each one using ASE, and records the force vectors predicted by the MLIP. The force errors (|ΔF|, |Δθ|) are computed by comparing MLIP and DFT forces atom by atom.
+The pipeline reads the structures, runs FP single-point evaluations on each one using ASE, and records the force vectors predicted by the FP. The force errors (|ΔF|, |Δθ|) are computed by comparing FP and DFT forces atom by atom.
 
 #### Supported input formats
 
@@ -241,13 +241,13 @@ The pipeline reads the structures, runs MLIP single-point evaluations on each on
    Set CHUNK_DATASET_PATH, CHUNK_BASE_DIR, CHUNK_N in Section 0 of the notebook
    and run the chunking cell. This writes chunk00/ … chunkNN/ as compressed JSON files.
 
-2. Register your MLIPs
+2. Register your FPs
    In Section 2 (POTENTIAL_REGISTRY), add an entry for each model you want to evaluate.
    Each entry specifies the venv to activate, the Python executable, the model path,
    and a short snippet of code that instantiates an ASE Calculator (see below).
 
 3. Generate SLURM scripts
-   Run Section 4. This writes code_chunk_*/ directories (one per chunk × MLIP)
+   Run Section 4. This writes code_chunk_*/ directories (one per chunk × FP)
    and a top-level mass_submit.sh that submits all jobs in one command.
 
 4. Transfer to cluster and submit
@@ -264,16 +264,16 @@ The pipeline reads the structures, runs MLIP single-point evaluations on each on
 ```python
 CHUNK_DATASET_PATH = "/path/to/your_dataset.xyz"   # path to input file
 CHUNK_BASE_DIR     = "/path/to/chunks/"             # output directory for chunks
-CHUNK_N            = 20        # number of chunks → number of parallel SLURM jobs per MLIP
+CHUNK_N            = 20        # number of chunks → number of parallel SLURM jobs per FP
 CHUNK_FUNCTIONAL   = None      # filename label (e.g. "pbe", "lyc"); None → inferred automatically
 CHUNK_N_MAX        = None      # use only first N entries; None → use all
 ```
 
-Choose `CHUNK_N` based on your cluster's queue and dataset size. For ~300k structures and 20 chunks, each job processes ~15k structures — a few hours per MLIP on a single CPU node.
+Choose `CHUNK_N` based on your cluster's queue and dataset size. For ~300k structures and 20 chunks, each job processes ~15k structures — a few hours per FP on a single CPU node.
 
-### Per-MLIP environments
+### Per-FP environments
 
-Each MLIP requires its own Python virtual environment with the relevant package installed. The `POTENTIAL_REGISTRY` in each generator notebook shows exactly how each model is set up. The key fields are:
+Each FP requires its own Python virtual environment with the relevant package installed. The `POTENTIAL_REGISTRY` in each generator notebook shows exactly how each model is set up. The key fields are:
 
 ```python
 "my_mlip": {
@@ -284,16 +284,16 @@ Each MLIP requires its own Python virtual environment with the relevant package 
 }
 ```
 
-The packages used for each MLIP in this study, and their install commands, are:
+The packages used for each FP in this study, and their install commands, are:
 
-| MLIP | Package | Install |
+| FP | Package | Install |
 |------|---------|---------|
 | MACE-MP0 / MACE-MatPES | `mace-torch` | `pip install mace-torch` |
 | CHGNet | `chgnet` | `pip install chgnet` |
 | M3GNet / TensorNet | `matgl` | `pip install matgl` |
 | UMA (Meta) | `fairchem-core` | `pip install fairchem-core` |
 
-Each venv also needs `pymatgen` and `ase` for structure handling. We recommend separate venvs per MLIP to avoid dependency conflicts. The exact environment setup we used on the cluster is shown in each generator notebook.
+Each venv also needs `pymatgen` and `ase` for structure handling. We recommend separate venvs per FP to avoid dependency conflicts. The exact environment setup we used on the cluster is shown in each generator notebook.
 
 ### Example: LYC dataset (Li–Y–Cl solid electrolyte)
 
@@ -331,8 +331,8 @@ If you use this code or analysis in your work, please cite:
 
 ```bibtex
 @misc{amirian2025matpes,
-  author = {Kiyana Amirian},
-  title  = {MatPES MLIP Force Analysis},
+  author = {Kiyan Amirian, Yifei Mo},
+  title  = {MatPES FP Force Analysis},
   year   = {2025},
   url    = {https://github.com/kamirian/Matpes_analysis}
 }
