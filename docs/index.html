@@ -287,13 +287,13 @@
           <th onclick="sortTable('tbl-pbe',7,true)">frac(&gt;1 eV/Å) (%) ↓<span class="sort-icon"></span></th>
         </tr></thead>
         <tbody>
-          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.082">0.082 / 1.088</td><td class="num" data-val="16">16 / 32</td><td class="num" data-val="20.2">20.2</td><td class="num" data-val="3.88">3.88 / 15.35</td><td class="num" data-val="0.25">0.25</td></tr>
-          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.169">0.169 / 1.369</td><td class="num" data-val="29">29 / 49</td><td class="num" data-val="8.6">8.6</td><td class="num" data-val="0.98">0.98 / 4.65</td><td class="num" data-val="1.20">1.20</td></tr>
-          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.204">0.204 / 1.222</td><td class="num" data-val="34">34 / 53</td><td class="num" data-val="8.2">8.2</td><td class="num" data-val="0.92">0.92 / 3.75</td><td class="num" data-val="2.35">2.35</td></tr>
-          <tr><td class="rank num">4</td><td class="model-name">MACE</td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.228">0.228 / 1.901</td><td class="num" data-val="37">37 / 58</td><td class="num" data-val="9.3">9.3</td><td class="num" data-val="1.07">1.07 / 4.51</td><td class="num" data-val="3.44">3.44</td></tr>
-          <tr><td class="rank num">5</td><td class="model-name">CHGNet</td><td class="training">MPtrj</td><td class="num" data-val="0.306">0.306 / 2.155</td><td class="num" data-val="45">45 / 66</td><td class="num" data-val="6.7">6.7</td><td class="num" data-val="0.66">0.66 / 2.16</td><td class="num" data-val="5.71">5.71</td></tr>
-          <tr><td class="rank num">6</td><td class="model-name">M3GNet</td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.425">0.425 / 1.470</td><td class="num" data-val="56">56 / 76</td><td class="num" data-val="5.6">5.6</td><td class="num" data-val="0.54">0.54 / 1.45</td><td class="num" data-val="10.79">10.79</td></tr>
-          <tr><td class="rank num">7</td><td class="model-name">UMA</td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.541">0.541 / 7.823</td><td class="num" data-val="28">28 / 51</td><td class="num" data-val="16.3">16.3</td><td class="num" data-val="2.79">2.79 / 11.44</td><td class="num" data-val="2.69">2.69</td></tr>
+          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.082">0.082 / 1.088</td><td class="num" data-val="16">16 / 32</td><td class="num" data-val="20.2">20.2</td><td class="num" data-val="3.88">3.88 / 15.35</td><td class="num" data-val="0.25">0.25</td></tr>
+          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.169">0.169 / 1.369</td><td class="num" data-val="29">29 / 49</td><td class="num" data-val="8.6">8.6</td><td class="num" data-val="0.98">0.98 / 4.65</td><td class="num" data-val="1.20">1.20</td></tr>
+          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.204">0.204 / 1.222</td><td class="num" data-val="34">34 / 53</td><td class="num" data-val="8.2">8.2</td><td class="num" data-val="0.92">0.92 / 3.75</td><td class="num" data-val="2.35">2.35</td></tr>
+          <tr><td class="rank num">4</td><td class="model-name">MACE <span class="tag-ood">ood</span></td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.228">0.228 / 1.901</td><td class="num" data-val="37">37 / 58</td><td class="num" data-val="9.3">9.3</td><td class="num" data-val="1.07">1.07 / 4.51</td><td class="num" data-val="3.44">3.44</td></tr>
+          <tr><td class="rank num">5</td><td class="model-name">CHGNet <span class="tag-ood">ood</span></td><td class="training">MPtrj</td><td class="num" data-val="0.306">0.306 / 2.155</td><td class="num" data-val="45">45 / 66</td><td class="num" data-val="6.7">6.7</td><td class="num" data-val="0.66">0.66 / 2.16</td><td class="num" data-val="5.71">5.71</td></tr>
+          <tr><td class="rank num">6</td><td class="model-name">M3GNet <span class="tag-ood">ood</span></td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.425">0.425 / 1.470</td><td class="num" data-val="56">56 / 76</td><td class="num" data-val="5.6">5.6</td><td class="num" data-val="0.54">0.54 / 1.45</td><td class="num" data-val="10.79">10.79</td></tr>
+          <tr><td class="rank num">7</td><td class="model-name">UMA <span class="tag-ood">ood</span></td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.541">0.541 / 7.823</td><td class="num" data-val="28">28 / 51</td><td class="num" data-val="16.3">16.3</td><td class="num" data-val="2.79">2.79 / 11.44</td><td class="num" data-val="2.69">2.69</td></tr>
         </tbody>
       </table>
     </div>
@@ -302,6 +302,8 @@
       Metrics at |F<sub>DFT</sub>| &gt; 0.01 eV/Å.
       Near-eq atoms (|F<sub>DFT</sub>| &lt; 1): <span>73.1%</span>. Far-from-eq: <span>26.9%</span>.
       frac(&lt;0.01) is |ΔF|-only (no angle filter).
+      <span class="tag-in">in-dist</span> = trained on MatPES-PBE (functional-matched).
+      <span class="tag-ood">ood</span> = trained on other datasets (MPtrj, OMAT24, Alexandria).
     </p>
 
     <!-- PBE detailed tables -->
@@ -311,7 +313,7 @@
         <div class="detail-inner">
           <p>Each cell shows: fraction with |Δθ|&lt;1° / fraction with |Δθ|&lt;20°. Higher is better ↑. |F<sub>DFT</sub>|&gt;0.01 eV/Å filter applied.</p>
           <div class="dt-section">
-            <table class="dt">
+            <table class="dt frac-table">
               <thead><tr>
                 <th>Model</th>
                 <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
@@ -335,7 +337,7 @@
         <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
         <div class="detail-inner">
           <p>Fraction of atoms with force magnitude error exceeding threshold. Lower is better ↓. Even small fractions here can crash MD simulations.</p>
-          <table class="dt">
+          <table class="dt err-table">
             <thead><tr>
               <th>Model</th>
               <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
@@ -349,6 +351,50 @@
               <tr><td>UMA</td><td>7.78</td><td>2.69</td><td>1.06</td><td>0.81</td><td>0.71</td><td>0.65</td><td>0.58</td><td>0.52</td></tr>
               <tr><td>CHGNet</td><td>18.34</td><td>5.71</td><td>0.94</td><td>0.29</td><td>0.12</td><td>0.07</td><td>0.04</td><td>0.02</td></tr>
               <tr><td>M3GNet</td><td>26.55</td><td>10.79</td><td>2.76</td><td>1.06</td><td>0.49</td><td>0.26</td><td>0.10</td><td>0.03</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |ΔF| conditioned on |F<sub>DFT</sub>| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>Error grows as threshold rises (harder force regime). <span style="color:#79c0ff">Blue tint = MAE</span>, <span style="color:#f78166">red tint = RMSE</span>. Lower is better ↓.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.01</th><th>&gt;0.10</th><th>&gt;0.50</th><th>&gt;1.00</th><th>&gt;2.00</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES</td><td>0.083 / 1.104</td><td>0.098 / 1.241</td><td>0.125 / 1.557</td><td>0.163 / 2.094</td><td>0.272 / 3.757</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>0.173 / 1.390</td><td>0.195 / 1.561</td><td>0.250 / 1.956</td><td>0.333 / 2.628</td><td>0.570 / 4.702</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>0.208 / 1.241</td><td>0.242 / 1.393</td><td>0.319 / 1.745</td><td>0.432 / 2.339</td><td>0.726 / 4.163</td></tr>
+              <tr><td>MACE</td><td>0.233 / 1.929</td><td>0.282 / 2.168</td><td>0.374 / 2.718</td><td>0.494 / 3.649</td><td>0.813 / 6.517</td></tr>
+              <tr><td>CHGNet</td><td>0.314 / 2.189</td><td>0.378 / 2.460</td><td>0.512 / 3.085</td><td>0.697 / 4.141</td><td>1.151 / 7.389</td></tr>
+              <tr><td>M3GNet</td><td>0.435 / 1.492</td><td>0.516 / 1.669</td><td>0.699 / 2.075</td><td>0.976 / 2.758</td><td>1.672 / 4.803</td></tr>
+              <tr><td>UMA</td><td>0.556 / 7.931</td><td>0.673 / 8.772</td><td>0.858 / 10.004</td><td>1.129 / 11.895</td><td>1.835 / 16.123</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |Δθ| conditioned on |Δθ| &lt; threshold (deg)</summary>
+        <div class="detail-inner">
+          <p>Tighter threshold selects only well-predicted directions; wider thresholds approach the global average. <span style="color:#79c0ff">Blue = MAE</span>, <span style="color:#f78166">red = RMSE</span>. Lower is better ↓. <span class="tag-in">in-dist</span> trained on MatPES-PBE; <span class="tag-ood">ood</span> trained on other data.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&lt;1°</th><th>&lt;5°</th><th>&lt;10°</th><th>&lt;20°</th><th>&lt;30°</th><th>&lt;60°</th><th>&lt;90°</th><th>&lt;120°</th><th>&lt;178°</th><th>&lt;179°</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES <span class="tag-in">in-dist</span></td><td>0.281 / 0.438</td><td>2.100 / 2.597</td><td>3.742 / 4.682</td><td>5.893 / 7.767</td><td>7.322 / 10.112</td><td>9.947 / 15.255</td><td>11.566 / 19.117</td><td>12.742 / 22.329</td><td>14.351 / 27.423</td><td>14.407 / 27.617</td></tr>
+              <tr><td>TensorNet-MatPES <span class="tag-in">in-dist</span></td><td>0.169 / 0.333</td><td>2.071 / 2.661</td><td>4.376 / 5.344</td><td>7.877 / 9.690</td><td>10.425 / 13.145</td><td>15.434 / 20.910</td><td>18.887 / 27.140</td><td>21.721 / 32.777</td><td>26.215 / 42.606</td><td>26.335 / 42.885</td></tr>
+              <tr><td>M3GNet-MatPES <span class="tag-in">in-dist</span></td><td>0.149 / 0.301</td><td>1.893 / 2.548</td><td>4.333 / 5.378</td><td>8.386 / 10.241</td><td>11.539 / 14.276</td><td>18.069 / 23.576</td><td>22.431 / 30.692</td><td>25.846 / 36.849</td><td>30.902 / 46.962</td><td>31.044 / 47.265</td></tr>
+              <tr><td>MACE <span class="tag-ood">ood</span></td><td>0.163 / 0.327</td><td>2.029 / 2.630</td><td>4.322 / 5.311</td><td>7.971 / 9.820</td><td>10.798 / 13.575</td><td>17.026 / 22.754</td><td>21.767 / 30.578</td><td>26.003 / 38.062</td><td>33.182 / 51.502</td><td>33.354 / 51.837</td></tr>
+              <tr><td>CHGNet <span class="tag-ood">ood</span></td><td>0.122 / 0.273</td><td>1.806 / 2.502</td><td>4.356 / 5.435</td><td>8.747 / 10.596</td><td>12.325 / 15.024</td><td>20.405 / 25.903</td><td>26.556 / 35.053</td><td>31.927 / 43.585</td><td>41.027 / 58.903</td><td>41.236 / 59.268</td></tr>
+              <tr><td>M3GNet <span class="tag-ood">ood</span></td><td>0.104 / 0.244</td><td>1.505 / 2.276</td><td>4.012 / 5.242</td><td>8.852 / 10.839</td><td>13.103 / 15.884</td><td>23.393 / 28.835</td><td>31.671 / 40.035</td><td>39.077 / 50.562</td><td>51.887 / 69.562</td><td>52.117 / 69.914</td></tr>
+              <tr><td>UMA <span class="tag-ood">ood</span></td><td>0.299 / 0.450</td><td>2.048 / 2.551</td><td>3.711 / 4.674</td><td>6.131 / 8.088</td><td>8.001 / 10.990</td><td>12.364 / 18.547</td><td>15.957 / 25.429</td><td>19.284 / 32.166</td><td>25.392 / 45.044</td><td>25.542 / 45.369</td></tr>
             </tbody>
           </table>
         </div>
@@ -374,16 +420,16 @@
           <th onclick="sortTable('tbl-r2scan',7,true)">frac(&gt;1 eV/Å) (%) ↓<span class="sort-icon"></span></th>
         </tr></thead>
         <tbody>
-          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.12">0.12 / 1.34</td><td class="num" data-val="17">17 / 33</td><td class="num" data-val="12.8">12.8</td><td class="num" data-val="2.33">2.33 / 10.35</td><td class="num" data-val="0.54">0.54</td></tr>
-          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.19">0.19 / 0.71</td><td class="num" data-val="26">26 / 45</td><td class="num" data-val="6.4">6.4</td><td class="num" data-val="0.79">0.79 / 4.19</td><td class="num" data-val="1.64">1.64</td></tr>
-          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.23">0.23 / 0.65</td><td class="num" data-val="30">30 / 48</td><td class="num" data-val="5.9">5.9</td><td class="num" data-val="0.80">0.80 / 3.48</td><td class="num" data-val="2.87">2.87</td></tr>
+          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.12">0.12 / 1.34</td><td class="num" data-val="17">17 / 33</td><td class="num" data-val="12.8">12.8</td><td class="num" data-val="2.33">2.33 / 10.35</td><td class="num" data-val="0.54">0.54</td></tr>
+          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.19">0.19 / 0.71</td><td class="num" data-val="26">26 / 45</td><td class="num" data-val="6.4">6.4</td><td class="num" data-val="0.79">0.79 / 4.19</td><td class="num" data-val="1.64">1.64</td></tr>
+          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES <span class="tag-in">in-dist</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.23">0.23 / 0.65</td><td class="num" data-val="30">30 / 48</td><td class="num" data-val="5.9">5.9</td><td class="num" data-val="0.80">0.80 / 3.48</td><td class="num" data-val="2.87">2.87</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lb-note">
       Dataset: MatPES-r2SCAN — 386,869 structures, 3,049,946 atoms.
       Near-eq atoms: <span>66.7%</span>. Far-from-eq: <span>33.3%</span>.
-      All three models trained on MatPES-r2SCAN (functional-matched). For cross-functional results see the GitHub repository.
+      All three models are <span class="tag-in">in-dist</span> (trained on MatPES-r2SCAN, functional-matched). For cross-functional comparisons (r2SCAN evaluation with PBE-trained models) see the GitHub repository.
     </p>
 
     <!-- r2SCAN detailed tables -->
@@ -392,7 +438,7 @@
         <summary>Joint accuracy fraction — % atoms with |ΔF| &lt; threshold AND |Δθ| &lt; 1° / 20°</summary>
         <div class="detail-inner">
           <p>Each cell: |Δθ|&lt;1° / |Δθ|&lt;20°. Higher is better ↑.</p>
-          <table class="dt">
+          <table class="dt frac-table">
             <thead><tr>
               <th>Model</th>
               <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
@@ -411,7 +457,7 @@
         <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
         <div class="detail-inner">
           <p>Lower is better ↓.</p>
-          <table class="dt">
+          <table class="dt err-table">
             <thead><tr>
               <th>Model</th>
               <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
@@ -421,6 +467,42 @@
               <tr><td>MACE-MatPES</td><td>3.09</td><td>0.54</td><td>0.09</td><td>0.04</td><td>0.03</td><td>0.02</td><td>0.007</td></tr>
               <tr><td>TensorNet-MatPES</td><td>7.83</td><td>1.64</td><td>0.25</td><td>0.10</td><td>0.06</td><td>0.04</td><td>0.014</td></tr>
               <tr><td>M3GNet-MatPES</td><td>11.19</td><td>2.87</td><td>0.54</td><td>0.19</td><td>0.08</td><td>0.04</td><td>0.009</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |ΔF| conditioned on |F<sub>DFT</sub>| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>r2SCAN-trained models only. <span style="color:#79c0ff">Blue tint = MAE</span>, <span style="color:#f78166">red tint = RMSE</span>. Lower is better ↓.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.01</th><th>&gt;0.10</th><th>&gt;0.50</th><th>&gt;1.00</th><th>&gt;2.00</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES</td><td>0.116 / 1.338</td><td>0.128 / 1.432</td><td>0.157 / 1.726</td><td>0.202 / 2.271</td><td>0.319 / 3.971</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>0.193 / 0.706</td><td>0.209 / 0.754</td><td>0.253 / 0.903</td><td>0.326 / 1.174</td><td>0.517 / 2.006</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>0.228 / 0.647</td><td>0.251 / 0.691</td><td>0.313 / 0.825</td><td>0.412 / 1.065</td><td>0.646 / 1.776</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |Δθ| conditioned on |Δθ| &lt; threshold (deg)</summary>
+        <div class="detail-inner">
+          <p>All three models are <span class="tag-in">in-dist</span> (trained on MatPES-r2SCAN). <span style="color:#79c0ff">Blue = MAE</span>, <span style="color:#f78166">red = RMSE</span>. Lower is better ↓.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&lt;1°</th><th>&lt;5°</th><th>&lt;10°</th><th>&lt;20°</th><th>&lt;30°</th><th>&lt;60°</th><th>&lt;90°</th><th>&lt;120°</th><th>&lt;178°</th><th>&lt;179°</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES <span class="tag-in">in-dist</span></td><td>0.258 / 0.422</td><td>2.188 / 2.682</td><td>4.009 / 4.922</td><td>6.399 / 8.216</td><td>7.904 / 10.593</td><td>10.463 / 15.493</td><td>11.980 / 19.115</td><td>13.118 / 22.254</td><td>14.878 / 27.850</td><td>14.939 / 28.059</td></tr>
+              <tr><td>TensorNet-MatPES <span class="tag-in">in-dist</span></td><td>0.165 / 0.333</td><td>2.134 / 2.710</td><td>4.492 / 5.429</td><td>8.007 / 9.770</td><td>10.476 / 13.121</td><td>14.916 / 20.114</td><td>17.626 / 25.258</td><td>19.731 / 29.789</td><td>23.107 / 37.986</td><td>23.201 / 38.228</td></tr>
+              <tr><td>M3GNet-MatPES <span class="tag-in">in-dist</span></td><td>0.145 / 0.302</td><td>1.967 / 2.607</td><td>4.447 / 5.454</td><td>8.473 / 10.277</td><td>11.532 / 14.206</td><td>17.466 / 22.797</td><td>21.049 / 28.893</td><td>23.629 / 33.858</td><td>27.349 / 42.019</td><td>27.455 / 42.268</td></tr>
             </tbody>
           </table>
         </div>
@@ -455,8 +537,9 @@
     </div>
     <p class="lb-note">
       Dataset: Rattled-1000 (OMAT24) — 117,004 structures, 1,657,763 atoms.
-      <span class="tag-in">in-dist</span> UMA trained on OMAT24 rattled structures (in-distribution advantage);
-      <span class="tag-ood">ood</span> = out-of-distribution.
+      Evaluation dataset: OMAT24 rattled structures.
+      <span class="tag-in">in-dist</span> UMA was trained on the OMAT24 training set (same distribution as this benchmark);
+      all other models are <span class="tag-ood">ood</span> (out-of-distribution, never saw rattled OMAT24 data).
       Far-from-eq atoms: <span>80.0%</span>.
     </p>
 
@@ -466,7 +549,7 @@
         <summary>Joint accuracy fraction — % atoms with |ΔF| &lt; threshold AND |Δθ| &lt; 1° / 20°</summary>
         <div class="detail-inner">
           <p>Each cell: |Δθ|&lt;1° / |Δθ|&lt;20°. Higher is better ↑. Note: UMA is in-distribution for this dataset.</p>
-          <table class="dt">
+          <table class="dt frac-table">
             <thead><tr>
               <th>Model</th>
               <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
@@ -489,7 +572,7 @@
         <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
         <div class="detail-inner">
           <p>Lower is better ↓. All MatPES-trained models are out-of-distribution here.</p>
-          <table class="dt">
+          <table class="dt err-table">
             <thead><tr>
               <th>Model</th>
               <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
@@ -503,6 +586,50 @@
               <tr><td>TensorNet-MatPES</td><td>28.67</td><td>12.65</td><td>4.51</td><td>2.32</td><td>1.42</td><td>0.95</td><td>0.52</td><td>0.28</td></tr>
               <tr><td>CHGNet</td><td>39.45</td><td>18.50</td><td>6.82</td><td>3.55</td><td>2.17</td><td>1.46</td><td>0.78</td><td>0.38</td></tr>
               <tr><td>M3GNet</td><td>49.98</td><td>27.66</td><td>10.85</td><td>5.11</td><td>2.74</td><td>1.67</td><td>0.73</td><td>0.28</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |ΔF| conditioned on |F<sub>DFT</sub>| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>80% of atoms are far-from-equilibrium so values change little with threshold. <span class="tag-in">in-dist</span> UMA is the reference. <span style="color:#79c0ff">Blue = MAE</span>, <span style="color:#f78166">red = RMSE</span>. Lower is better ↓.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.01</th><th>&gt;0.10</th><th>&gt;0.50</th><th>&gt;1.00</th><th>&gt;2.00</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>UMA <span class="tag-in">in-dist</span></td><td>0.092 / 0.223</td><td>0.092 / 0.223</td><td>0.095 / 0.230</td><td>0.102 / 0.244</td><td>0.114 / 0.276</td></tr>
+              <tr><td>MACE</td><td>0.342 / 2.829</td><td>0.342 / 2.832</td><td>0.359 / 2.927</td><td>0.398 / 3.161</td><td>0.491 / 3.753</td></tr>
+              <tr><td>MACE-MatPES</td><td>0.433 / 2.247</td><td>0.434 / 2.250</td><td>0.457 / 2.326</td><td>0.512 / 2.511</td><td>0.648 / 2.979</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>0.551 / 2.178</td><td>0.552 / 2.180</td><td>0.579 / 2.253</td><td>0.642 / 2.431</td><td>0.791 / 2.878</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>0.600 / 4.153</td><td>0.601 / 4.157</td><td>0.631 / 4.298</td><td>0.703 / 4.640</td><td>0.886 / 5.510</td></tr>
+              <tr><td>CHGNet</td><td>0.761 / 3.997</td><td>0.762 / 4.001</td><td>0.803 / 4.136</td><td>0.896 / 4.465</td><td>1.123 / 5.298</td></tr>
+              <tr><td>M3GNet</td><td>0.912 / 1.963</td><td>0.914 / 1.965</td><td>0.958 / 2.028</td><td>1.059 / 2.180</td><td>1.281 / 2.543</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>MAE / RMSE of |Δθ| conditioned on |Δθ| &lt; threshold (deg)</summary>
+        <div class="detail-inner">
+          <p>Angular errors smaller here than PBE/r2SCAN due to large |F<sub>DFT</sub>| normalizing the cross product. <span style="color:#79c0ff">Blue = MAE</span>, <span style="color:#f78166">red = RMSE</span>. Lower is better ↓. <span class="tag-in">in-dist</span> UMA trained on OMAT24; all others are <span class="tag-ood">ood</span>.</p>
+          <table class="dt mae-rmse-table">
+            <thead><tr>
+              <th>Model</th>
+              <th>&lt;1°</th><th>&lt;5°</th><th>&lt;10°</th><th>&lt;20°</th><th>&lt;30°</th><th>&lt;60°</th><th>&lt;90°</th><th>&lt;120°</th><th>&lt;178°</th><th>&lt;179°</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>UMA <span class="tag-in">in-dist</span></td><td>0.530 / 0.591</td><td>1.661 / 2.077</td><td>2.310 / 3.151</td><td>2.863 / 4.344</td><td>3.106 / 5.038</td><td>3.398 / 6.205</td><td>3.517 / 6.896</td><td>3.581 / 7.377</td><td>3.641 / 7.940</td><td>3.641 / 7.941</td></tr>
+              <tr><td>MACE <span class="tag-ood">ood</span></td><td>0.629 / 0.675</td><td>2.411 / 2.737</td><td>3.796 / 4.556</td><td>5.353 / 6.961</td><td>6.195 / 8.533</td><td>7.272 / 11.129</td><td>7.673 / 12.478</td><td>7.880 / 13.359</td><td>8.048 / 14.258</td><td>8.049 / 14.258</td></tr>
+              <tr><td>MACE-MatPES <span class="tag-ood">ood</span></td><td>0.626 / 0.672</td><td>2.383 / 2.713</td><td>3.782 / 4.554</td><td>5.428 / 7.076</td><td>6.329 / 8.729</td><td>7.486 / 11.452</td><td>7.913 / 12.848</td><td>8.127 / 13.738</td><td>8.293 / 14.603</td><td>8.293 / 14.604</td></tr>
+              <tr><td>M3GNet-MatPES <span class="tag-ood">ood</span></td><td>0.644 / 0.687</td><td>2.695 / 2.987</td><td>4.536 / 5.228</td><td>6.982 / 8.562</td><td>8.543 / 10.986</td><td>11.002 / 15.615</td><td>12.114 / 18.315</td><td>12.718 / 20.103</td><td>13.203 / 21.858</td><td>13.204 / 21.862</td></tr>
+              <tr><td>TensorNet-MatPES <span class="tag-ood">ood</span></td><td>0.643 / 0.686</td><td>2.638 / 2.935</td><td>4.365 / 5.073</td><td>6.611 / 8.211</td><td>7.984 / 10.422</td><td>10.025 / 14.474</td><td>10.918 / 16.802</td><td>11.425 / 18.424</td><td>11.857 / 20.131</td><td>11.858 / 20.134</td></tr>
+              <tr><td>CHGNet <span class="tag-ood">ood</span></td><td>0.648 / 0.691</td><td>2.787 / 3.065</td><td>4.721 / 5.380</td><td>7.200 / 8.710</td><td>8.744 / 11.095</td><td>11.149 / 15.629</td><td>12.269 / 18.356</td><td>12.903 / 20.228</td><td>13.441 / 22.170</td><td>13.445 / 22.188</td></tr>
+              <tr><td>M3GNet <span class="tag-ood">ood</span></td><td>0.644 / 0.688</td><td>2.836 / 3.112</td><td>5.000 / 5.645</td><td>8.109 / 9.602</td><td>10.240 / 12.615</td><td>14.005 / 18.861</td><td>16.091 / 23.096</td><td>17.427 / 26.265</td><td>18.684 / 29.762</td><td>18.685 / 29.767</td></tr>
             </tbody>
           </table>
         </div>
@@ -892,11 +1019,88 @@ pip install -r requirements.txt   # then install your FP's package</code></pre>
     }
   }
 
+  // ── DETAIL TABLE HEATMAP COLORING ─────────────────────────────────────────
+  const CMAPS = {
+    viridis: [[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]],
+    reds:    [[255,245,240],[252,174,145],[251,106,74],[203,24,29],[103,0,13]],
+    blues:   [[247,251,255],[198,219,239],[107,174,214],[33,113,181],[8,48,107]],
+  };
+
+  function cmapRgb(name, t) {
+    const s = CMAPS[name];
+    const x = Math.max(0, Math.min(1, t)) * (s.length - 1);
+    const lo = Math.floor(x), hi = Math.min(s.length - 1, lo + 1);
+    const f = x - lo;
+    return s[lo].map((c, i) => Math.round(c + f * (s[hi][i] - c)));
+  }
+
+  function autoText(rgb) {
+    return (rgb[0]*299 + rgb[1]*587 + rgb[2]*114) / 1000 > 140 ? '#0d1117' : '#f0f6fc';
+  }
+
+  function colorizeDetailTable(tbl) {
+    const isErr = tbl.classList.contains('err-table');
+    const cmap  = isErr ? 'reds' : 'viridis';
+    const rows  = Array.from(tbl.querySelectorAll('tbody tr'));
+    if (!rows.length) return;
+    const ncols = rows[0].querySelectorAll('td').length;
+    for (let c = 1; c < ncols; c++) {
+      const cells = rows.map(r => r.querySelectorAll('td')[c]);
+      // parseFloat handles "3.88 / 15.35" → 3.88 naturally
+      const vals  = cells.map(cell => parseFloat(cell.textContent));
+      const valid = vals.filter(v => !isNaN(v));
+      if (!valid.length) continue;
+      const mn = Math.min(...valid), mx = Math.max(...valid);
+      cells.forEach((cell, i) => {
+        const v = vals[i]; if (isNaN(v)) return;
+        const t = mx === mn ? 0.5 : (v - mn) / (mx - mn);
+        const rgb = cmapRgb(cmap, t);
+        cell.style.background = `rgb(${rgb})`;
+        cell.style.color = autoText(rgb);
+      });
+    }
+  }
+
+  // Split merged "A / B" cells and apply Blues (MAE) + Reds (RMSE) per column
+  function colorizeMAERMSETable(tbl) {
+    const rows = Array.from(tbl.querySelectorAll('tbody tr'));
+    if (!rows.length) return;
+    const ncols = rows[0].querySelectorAll('td').length;
+    for (let c = 1; c < ncols; c++) {
+      const cells = rows.map(r => r.querySelectorAll('td')[c]);
+      const pairs = cells.map(cell => {
+        const parts = cell.textContent.split('/').map(s => parseFloat(s.trim()));
+        return parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1]) ? parts : null;
+      });
+      if (!pairs.some(Boolean)) continue;
+      const maes  = pairs.map(p => p ? p[0] : NaN);
+      const rmses = pairs.map(p => p ? p[1] : NaN);
+      const validM = maes.filter(v => !isNaN(v)), validR = rmses.filter(v => !isNaN(v));
+      const mnM = Math.min(...validM), mxM = Math.max(...validM);
+      const mnR = Math.min(...validR), mxR = Math.max(...validR);
+      cells.forEach((cell, i) => {
+        if (!pairs[i]) return;
+        const [m, r] = pairs[i];
+        const tM = mxM === mnM ? 0.5 : (m - mnM) / (mxM - mnM);
+        const tR = mxR === mnR ? 0.5 : (r - mnR) / (mxR - mnR);
+        const rgbM = cmapRgb('blues', tM), rgbR = cmapRgb('reds', tR);
+        const fmtM = m < 10 ? m.toFixed(2) : m.toFixed(1);
+        const fmtR = r < 10 ? r.toFixed(2) : r.toFixed(1);
+        cell.innerHTML =
+          `<span style="background:rgb(${rgbM});color:${autoText(rgbM)};padding:1px 5px;border-radius:3px;">${fmtM}</span>` +
+          ` <span style="color:var(--muted)">/</span> ` +
+          `<span style="background:rgb(${rgbR});color:${autoText(rgbR)};padding:1px 5px;border-radius:3px;">${fmtR}</span>`;
+      });
+    }
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     ['tbl-pbe', 'tbl-r2scan', 'tbl-rattled'].forEach(id => {
       const t = document.getElementById(id);
       if (t) highlightBest(t);
     });
+    document.querySelectorAll('table.dt.frac-table, table.dt.err-table').forEach(colorizeDetailTable);
+    document.querySelectorAll('table.dt.mae-rmse-table').forEach(colorizeMAERMSETable);
   });
 </script>
 
