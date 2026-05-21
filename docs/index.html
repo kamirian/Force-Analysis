@@ -42,18 +42,13 @@
       z-index: 100;
     }
     nav .logo { font-weight: 700; font-size: 1rem; color: var(--heading); text-decoration: none; }
-    nav .nav-links { display: flex; align-items: center; gap: 0; }
+    nav .nav-links { display: flex; align-items: center; }
     nav a { color: var(--muted); text-decoration: none; font-size: 0.88rem; margin-left: 1.4rem; }
     nav a:hover { color: var(--accent); }
     nav a.nav-highlight { color: var(--accent); font-weight: 600; }
 
     /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 4.5rem 2rem 3rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .hero { text-align: center; padding: 4.5rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
     .hero .tag-line { font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
     .hero h1 { font-size: 2.4rem; font-weight: 800; color: var(--heading); letter-spacing: -0.5px; line-height: 1.2; }
     .hero p { margin-top: 1rem; font-size: 1.05rem; color: var(--muted); max-width: 660px; margin-left: auto; margin-right: auto; }
@@ -68,103 +63,73 @@
     .btn-green  { background: var(--accent2); color: #0d1117; }
 
     /* ── SECTIONS ── */
-    section { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); }
+    section { max-width: 1040px; margin: 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); }
     section h2 { font-size: 1.55rem; color: var(--heading); font-weight: 700; margin-bottom: 1rem; }
     section h3 { font-size: 1.05rem; color: var(--heading); font-weight: 600; margin: 1.8rem 0 0.6rem; }
     section p { color: var(--text); margin-bottom: 0.8rem; }
 
     /* ── CALLOUT ── */
-    .callout {
-      background: var(--surface);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 1rem 1.4rem;
-      margin: 1.2rem 0;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
+    .callout { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.4rem; margin: 1.2rem 0; font-size: 0.95rem; color: var(--text); }
     .callout.green { border-left-color: var(--accent2); }
-    .callout.yellow { border-left-color: var(--accent4); }
     .callout strong { color: var(--heading); }
 
     /* ── LEADERBOARD TABS ── */
-    .tab-bar {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.5rem;
-      overflow-x: auto;
-    }
-    .tab-btn {
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.7rem 1.4rem;
-      cursor: pointer;
-      white-space: nowrap;
-      font-family: inherit;
-      transition: color 0.15s, border-color 0.15s;
-    }
+    .tab-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; overflow-x: auto; }
+    .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-size: 0.9rem; font-weight: 600; padding: 0.7rem 1.4rem; cursor: pointer; white-space: nowrap; font-family: inherit; transition: color 0.15s, border-color 0.15s; }
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* ── LEADERBOARD TABLE ── */
+    /* ── MAIN LEADERBOARD TABLE ── */
     .lb-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-top: 0.5rem; }
-    .lb-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.84rem;
-      min-width: 780px;
-    }
-    .lb-table th {
-      background: var(--surface2);
-      color: var(--muted);
-      text-align: left;
-      padding: 0.65rem 0.9rem;
-      border-bottom: 1px solid var(--border);
-      font-weight: 600;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      white-space: nowrap;
-      cursor: pointer;
-      user-select: none;
-    }
+    .lb-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 820px; }
+    .lb-table th { background: var(--surface2); color: var(--muted); text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; cursor: pointer; user-select: none; }
     .lb-table th:hover { color: var(--accent); }
-    .lb-table th .sort-icon { color: var(--border); margin-left: 4px; font-size: 0.7rem; }
+    .lb-table th .sort-icon::before { content: " ⇅"; color: var(--border); }
     .lb-table th.sorted-asc .sort-icon::before { content: " ▲"; color: var(--accent); }
     .lb-table th.sorted-desc .sort-icon::before { content: " ▼"; color: var(--accent); }
-    .lb-table th:not(.sorted-asc):not(.sorted-desc) .sort-icon::before { content: " ⇅"; }
-    .lb-table td {
-      padding: 0.6rem 0.9rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-      white-space: nowrap;
-    }
+    .lb-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--text); white-space: nowrap; }
     .lb-table tr:last-child td { border-bottom: none; }
     .lb-table tr:hover td { background: rgba(88,166,255,0.04); }
     .lb-table td.rank { color: var(--muted); font-size: 0.78rem; text-align: center; width: 36px; }
     .lb-table td.model-name { font-weight: 600; color: var(--heading); }
     .lb-table td.training { color: var(--muted); font-size: 0.82rem; }
     .lb-table td.num { font-family: "SFMono-Regular", Consolas, monospace; text-align: right; }
-    .lb-table td.best { color: var(--accent2); font-weight: 700; }
-    .lb-table td.worst { color: var(--accent3); }
+    .lb-table td.best { color: var(--accent2) !important; font-weight: 700; }
+    .lb-table td.worst { color: var(--accent3) !important; }
     .tag-in  { display: inline-block; background: rgba(63,185,80,0.12); color: var(--accent2); border-radius: 3px; padding: 0.1rem 0.4rem; font-size: 0.72rem; font-weight: 700; margin-left: 4px; }
     .tag-ood { display: inline-block; background: rgba(247,129,102,0.12); color: var(--accent3); border-radius: 3px; padding: 0.1rem 0.4rem; font-size: 0.72rem; font-weight: 700; margin-left: 4px; }
-
     .lb-note { font-size: 0.82rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5; }
     .lb-note span { color: var(--accent2); font-weight: 600; }
 
-    /* ── COL LEGEND ── */
-    .col-legend { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .col-legend .item { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
-    .col-legend .arrow-down { color: var(--accent3); font-size: 0.75rem; }
-    .col-legend .arrow-up   { color: var(--accent2); font-size: 0.75rem; }
+    /* ── COLUMN LEGEND ── */
+    .col-legend { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1rem; font-size: 0.8rem; color: var(--muted); }
+    .col-legend .arrow-down { color: var(--accent3); }
+    .col-legend .arrow-up   { color: var(--accent2); }
+
+    /* ── DETAILED TABLES (collapsible) ── */
+    .detail-wrap { margin-top: 1.2rem; }
+    details { border: 1px solid var(--border); border-radius: 8px; margin-top: 0.8rem; }
+    details summary { padding: 0.75rem 1rem; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--muted); list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "▶"; font-size: 0.7rem; transition: transform 0.15s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details summary:hover { color: var(--accent); }
+    details[open] summary { border-bottom: 1px solid var(--border); color: var(--heading); }
+    .detail-inner { padding: 1rem; overflow-x: auto; }
+    .detail-inner p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; }
+
+    /* ── DETAIL TABLE STYLE ── */
+    .dt { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 600px; }
+    .dt th { background: var(--surface2); color: var(--muted); text-align: right; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.73rem; white-space: nowrap; }
+    .dt th:first-child { text-align: left; }
+    .dt td { padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--border); color: var(--text); font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.8rem; text-align: right; white-space: nowrap; }
+    .dt td:first-child { text-align: left; font-family: inherit; font-weight: 600; color: var(--heading); }
+    .dt tr:last-child td { border-bottom: none; }
+    .dt tr:hover td { background: rgba(88,166,255,0.04); }
+    .dt-section { margin-top: 1.2rem; }
+    .dt-section-title { font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
 
     /* ── METRIC CARDS ── */
     .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
@@ -172,7 +137,7 @@
     .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; }
     .metric-card .symbol { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-family: "Georgia", serif; }
     .metric-card .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-    .metric-card .formula { font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.85rem; color: var(--accent2); background: var(--code-bg); border-radius: 4px; padding: 0.3rem 0.6rem; margin: 0.6rem 0 0.4rem; display: inline-block; }
+    .metric-card .formula { font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.83rem; color: var(--accent2); background: var(--code-bg); border-radius: 4px; padding: 0.3rem 0.6rem; margin: 0.6rem 0 0.4rem; display: inline-block; }
     .metric-card .desc { font-size: 0.88rem; color: var(--text); margin-top: 0.5rem; }
 
     /* ── REGIME CARDS ── */
@@ -182,9 +147,9 @@
     .regime-card .rtag { display: inline-block; border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.74rem; font-weight: 700; margin-bottom: 0.6rem; }
     .regime-card h3 { font-size: 0.95rem; margin: 0 0 0.4rem; color: var(--heading); }
     .regime-card p { font-size: 0.84rem; color: var(--muted); margin: 0; }
-    .tag-green  { background: rgba(63,185,80,0.15);  color: var(--accent2); }
-    .tag-red    { background: rgba(247,129,102,0.15); color: var(--accent3); }
-    .tag-blue   { background: rgba(88,166,255,0.15);  color: var(--accent); }
+    .tag-green { background: rgba(63,185,80,0.15); color: var(--accent2); }
+    .tag-red   { background: rgba(247,129,102,0.15); color: var(--accent3); }
+    .tag-blue  { background: rgba(88,166,255,0.15); color: var(--accent); }
 
     /* ── DATASET CARDS ── */
     .dataset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; }
@@ -197,27 +162,9 @@
 
     /* ── SUBMIT STEPS ── */
     .submit-steps { counter-reset: step; margin-top: 1rem; }
-    .submit-step {
-      display: flex;
-      gap: 1.2rem;
-      margin-bottom: 1.4rem;
-      counter-increment: step;
-    }
-    .submit-step .step-num {
-      flex-shrink: 0;
-      width: 36px; height: 36px;
-      background: rgba(88,166,255,0.12);
-      border: 1px solid rgba(88,166,255,0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
+    .submit-step { display: flex; gap: 1.2rem; margin-bottom: 1.4rem; counter-increment: step; }
+    .submit-step .step-num { flex-shrink: 0; width: 36px; height: 36px; background: rgba(88,166,255,0.12); border: 1px solid rgba(88,166,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: var(--accent); }
     .submit-step .step-num::before { content: counter(step); }
-    .submit-step .step-body { flex: 1; }
     .submit-step .step-body h4 { color: var(--heading); font-size: 0.97rem; margin-bottom: 0.3rem; }
     .submit-step .step-body p { font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
 
@@ -240,17 +187,17 @@
     .script-card ul { font-size: 0.83rem; color: var(--muted); padding-left: 1.1rem; margin-top: 0.4rem; }
     .script-card li { margin-bottom: 0.2rem; }
 
-    /* ── MODELS TABLE ── */
-    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 0.8rem; }
-    th { background: var(--surface); color: var(--muted); text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--text); }
-    tr:last-child td { border-bottom: none; }
+    /* ── GENERIC TABLE ── */
+    table.gen { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 0.8rem; }
+    table.gen th { background: var(--surface); color: var(--muted); text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    table.gen td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--text); }
+    table.gen tr:last-child td { border-bottom: none; }
     code { background: var(--code-bg); border-radius: 4px; padding: 0.15em 0.45em; font-size: 0.85em; color: #79c0ff; font-family: "SFMono-Regular", Consolas, monospace; }
     pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; overflow-x: auto; font-size: 0.84rem; line-height: 1.6; margin-top: 0.8rem; }
     pre code { background: none; padding: 0; color: var(--text); }
 
     /* ── PIPELINE ── */
-    .pipeline { display: flex; gap: 0; align-items: stretch; margin: 1.2rem 0; flex-wrap: wrap; }
+    .pipeline { display: flex; align-items: stretch; margin: 1.2rem 0; flex-wrap: wrap; }
     .pipeline-step { flex: 1; min-width: 130px; background: var(--surface); border: 1px solid var(--border); padding: 1rem; text-align: center; position: relative; }
     .pipeline-step:not(:last-child)::after { content: "→"; position: absolute; right: -0.8rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1.1rem; z-index: 1; }
     .pipeline-step:first-child { border-radius: 8px 0 0 8px; }
@@ -303,260 +250,345 @@
   </div>
 </div>
 
-<!-- ════════════════════════════ LEADERBOARD ════════════════════════════ -->
+<!-- ════════════════ LEADERBOARD ════════════════ -->
 <section id="leaderboard">
   <h2>Leaderboard</h2>
-
   <p>
-    Results for all evaluated foundation potentials across three benchmark datasets.
-    Metrics are computed over per-atom force vectors using DFT as the reference.
-    Click any column header to sort. Lower MAE/RMSE and lower large-error fraction are
-    better (&darr;); higher DFT-substitutable fraction is better (&uarr;).
+    Results across three benchmark datasets. Click any column header to sort.
+    Columns with MAE/RMSE show both values separated by "/"; fraction columns show
+    the joint criterion (|Δθ|&lt;1° / |Δθ|&lt;20°). Sort uses the primary metric (MAE or joint-1°).
   </p>
-
   <div class="col-legend">
-    <div class="item"><span class="arrow-down">▼</span> lower is better</div>
-    <div class="item"><span class="arrow-up">▲</span> higher is better</div>
-    <div class="item" style="color:var(--accent2); font-weight:700">green = best in column</div>
-    <div class="item" style="color:var(--accent3)">red = worst in column</div>
+    <span><span class="arrow-down">▼</span> lower is better</span>
+    <span><span class="arrow-up">▲</span> higher is better</span>
+    <span style="color:var(--accent2);font-weight:700">green = best in column</span>
+    <span style="color:var(--accent3)">red = worst in column</span>
   </div>
 
   <!-- TAB BAR -->
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('pbe', this)">MatPES-PBE</button>
-    <button class="tab-btn" onclick="switchTab('r2scan', this)">MatPES-r2SCAN</button>
-    <button class="tab-btn" onclick="switchTab('rattled', this)">Rattled-1000</button>
+    <button class="tab-btn active" onclick="switchTab('pbe',this)">MatPES-PBE</button>
+    <button class="tab-btn" onclick="switchTab('r2scan',this)">MatPES-r2SCAN</button>
+    <button class="tab-btn" onclick="switchTab('rattled',this)">Rattled-1000</button>
   </div>
 
-  <!-- ── PBE TAB ── -->
+  <!-- ══ PBE TAB ══ -->
   <div id="tab-pbe" class="tab-panel active">
     <div class="lb-wrap">
       <table class="lb-table" id="tbl-pbe">
-        <thead>
-          <tr>
-            <th onclick="sortTable('tbl-pbe',0,true)"  title="Rank by MAE |ΔF|">#<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',1,false)" title="Foundation potential name">Model<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',2,false)" title="Training dataset">Training<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',3,true)"  title="Mean absolute error of force magnitude (eV/Å) ↓" class="sorted-asc">MAE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',4,true)"  title="Root mean square error of force magnitude (eV/Å) ↓">RMSE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',5,true)"  title="Mean absolute error of force direction (degrees) ↓">MAE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',6,true)"  title="Root mean square error of force direction (degrees) ↓">RMSE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',7,false)" title="% atoms with |ΔF|<0.01 AND |Δθ|<1° — jointly accurate (↑)">frac(&lt;0.01&amp;&lt;1°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',8,false)" title="% atoms with |ΔF|<0.01 AND |Δθ|<20° — jointly accurate (↑)">frac(&lt;0.01&amp;&lt;20°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-pbe',9,true)"  title="% atoms with |ΔF|>1 eV/Å — catastrophic errors (↓)">frac(&gt;1 eV/Å)<br>(%) ↓<span class="sort-icon"></span></th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th onclick="sortTable('tbl-pbe',0,true)">#<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',1,false)">Model<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',2,false)">Training<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',3,true)" class="sorted-asc">MAE / RMSE |ΔF| (eV/Å) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',4,true)">MAE / RMSE |Δθ| (°) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',5,false)">frac(&lt;0.01) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',6,false)">frac(&lt;0.01 &amp; &lt;1°/20°) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-pbe',7,true)">frac(&gt;1 eV/Å) (%) ↓<span class="sort-icon"></span></th>
+        </tr></thead>
         <tbody>
-          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.082">0.082</td><td class="num" data-val="1.088">1.088</td><td class="num" data-val="16">16</td><td class="num" data-val="32">32</td><td class="num" data-val="3.88">3.88</td><td class="num" data-val="15.35">15.35</td><td class="num" data-val="0.25">0.25</td></tr>
-          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.169">0.169</td><td class="num" data-val="1.369">1.369</td><td class="num" data-val="29">29</td><td class="num" data-val="49">49</td><td class="num" data-val="0.98">0.98</td><td class="num" data-val="4.65">4.65</td><td class="num" data-val="1.20">1.20</td></tr>
-          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.204">0.204</td><td class="num" data-val="1.222">1.222</td><td class="num" data-val="34">34</td><td class="num" data-val="53">53</td><td class="num" data-val="0.92">0.92</td><td class="num" data-val="3.75">3.75</td><td class="num" data-val="2.35">2.35</td></tr>
-          <tr><td class="rank num">4</td><td class="model-name">MACE</td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.228">0.228</td><td class="num" data-val="1.901">1.901</td><td class="num" data-val="37">37</td><td class="num" data-val="58">58</td><td class="num" data-val="1.07">1.07</td><td class="num" data-val="4.51">4.51</td><td class="num" data-val="3.44">3.44</td></tr>
-          <tr><td class="rank num">5</td><td class="model-name">CHGNet</td><td class="training">MPtrj</td><td class="num" data-val="0.306">0.306</td><td class="num" data-val="2.155">2.155</td><td class="num" data-val="45">45</td><td class="num" data-val="66">66</td><td class="num" data-val="0.66">0.66</td><td class="num" data-val="2.16">2.16</td><td class="num" data-val="5.71">5.71</td></tr>
-          <tr><td class="rank num">6</td><td class="model-name">M3GNet</td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.425">0.425</td><td class="num" data-val="1.470">1.470</td><td class="num" data-val="56">56</td><td class="num" data-val="76">76</td><td class="num" data-val="0.54">0.54</td><td class="num" data-val="1.45">1.45</td><td class="num" data-val="10.79">10.79</td></tr>
-          <tr><td class="rank num">7</td><td class="model-name">UMA</td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.541">0.541</td><td class="num" data-val="7.823">7.823</td><td class="num" data-val="28">28</td><td class="num" data-val="51">51</td><td class="num" data-val="2.79">2.79</td><td class="num" data-val="11.44">11.44</td><td class="num" data-val="2.69">2.69</td></tr>
+          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.082">0.082 / 1.088</td><td class="num" data-val="16">16 / 32</td><td class="num" data-val="20.2">20.2</td><td class="num" data-val="3.88">3.88 / 15.35</td><td class="num" data-val="0.25">0.25</td></tr>
+          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.169">0.169 / 1.369</td><td class="num" data-val="29">29 / 49</td><td class="num" data-val="8.6">8.6</td><td class="num" data-val="0.98">0.98 / 4.65</td><td class="num" data-val="1.20">1.20</td></tr>
+          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES</td><td class="training">MatPES-PBE</td><td class="num" data-val="0.204">0.204 / 1.222</td><td class="num" data-val="34">34 / 53</td><td class="num" data-val="8.2">8.2</td><td class="num" data-val="0.92">0.92 / 3.75</td><td class="num" data-val="2.35">2.35</td></tr>
+          <tr><td class="rank num">4</td><td class="model-name">MACE</td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.228">0.228 / 1.901</td><td class="num" data-val="37">37 / 58</td><td class="num" data-val="9.3">9.3</td><td class="num" data-val="1.07">1.07 / 4.51</td><td class="num" data-val="3.44">3.44</td></tr>
+          <tr><td class="rank num">5</td><td class="model-name">CHGNet</td><td class="training">MPtrj</td><td class="num" data-val="0.306">0.306 / 2.155</td><td class="num" data-val="45">45 / 66</td><td class="num" data-val="6.7">6.7</td><td class="num" data-val="0.66">0.66 / 2.16</td><td class="num" data-val="5.71">5.71</td></tr>
+          <tr><td class="rank num">6</td><td class="model-name">M3GNet</td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.425">0.425 / 1.470</td><td class="num" data-val="56">56 / 76</td><td class="num" data-val="5.6">5.6</td><td class="num" data-val="0.54">0.54 / 1.45</td><td class="num" data-val="10.79">10.79</td></tr>
+          <tr><td class="rank num">7</td><td class="model-name">UMA</td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.541">0.541 / 7.823</td><td class="num" data-val="28">28 / 51</td><td class="num" data-val="16.3">16.3</td><td class="num" data-val="2.79">2.79 / 11.44</td><td class="num" data-val="2.69">2.69</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lb-note">
       Dataset: MatPES-PBE — 433,207 structures, 3,871,763 atoms.
-      Metrics conditioned on |F<sub>DFT</sub>| &gt; 0.01 eV/Å.
-      Near-equilibrium atoms (|F<sub>DFT</sub>| &lt; 1 eV/Å): <span>73.1%</span>.
-      Far-from-equilibrium (|F<sub>DFT</sub>| &ge; 1 eV/Å): <span>26.9%</span>.
+      Metrics at |F<sub>DFT</sub>| &gt; 0.01 eV/Å.
+      Near-eq atoms (|F<sub>DFT</sub>| &lt; 1): <span>73.1%</span>. Far-from-eq: <span>26.9%</span>.
+      frac(&lt;0.01) is |ΔF|-only (no angle filter).
     </p>
+
+    <!-- PBE detailed tables -->
+    <div class="detail-wrap">
+      <details>
+        <summary>Joint accuracy fraction — % atoms with |ΔF| &lt; threshold AND |Δθ| &lt; 1° / 20°</summary>
+        <div class="detail-inner">
+          <p>Each cell shows: fraction with |Δθ|&lt;1° / fraction with |Δθ|&lt;20°. Higher is better ↑. |F<sub>DFT</sub>|&gt;0.01 eV/Å filter applied.</p>
+          <div class="dt-section">
+            <table class="dt">
+              <thead><tr>
+                <th>Model</th>
+                <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
+                <th>|ΔF|&lt;0.07</th><th>|ΔF|&lt;0.10</th><th>|ΔF|&lt;0.20</th>
+              </tr></thead>
+              <tbody>
+                <tr><td>MACE-MatPES</td><td>3.88 / 15.35</td><td>6.37 / 26.95</td><td>9.71 / 47.50</td><td>10.67 / 55.26</td><td>11.44 / 62.75</td><td>12.33 / 73.48</td></tr>
+                <tr><td>TensorNet-MatPES</td><td>0.98 / 4.65</td><td>1.83 / 8.98</td><td>3.66 / 19.76</td><td>4.48 / 25.44</td><td>5.34 / 32.22</td><td>6.73 / 45.71</td></tr>
+                <tr><td>M3GNet-MatPES</td><td>0.92 / 3.75</td><td>1.74 / 7.26</td><td>3.48 / 16.01</td><td>4.27 / 20.67</td><td>5.08 / 26.24</td><td>6.34 / 37.46</td></tr>
+                <tr><td>MACE</td><td>1.07 / 4.51</td><td>1.96 / 8.57</td><td>3.74 / 17.98</td><td>4.42 / 22.44</td><td>5.09 / 27.54</td><td>6.01 / 37.35</td></tr>
+                <tr><td>UMA</td><td>2.79 / 11.44</td><td>4.59 / 19.76</td><td>7.19 / 34.56</td><td>8.01 / 40.39</td><td>8.74 / 46.32</td><td>9.78 / 56.05</td></tr>
+                <tr><td>CHGNet</td><td>0.66 / 2.16</td><td>1.26 / 4.17</td><td>2.49 / 9.18</td><td>3.05 / 11.92</td><td>3.66 / 15.32</td><td>4.66 / 23.07</td></tr>
+                <tr><td>M3GNet</td><td>0.54 / 1.45</td><td>1.02 / 2.79</td><td>2.06 / 6.11</td><td>2.55 / 7.94</td><td>3.09 / 10.22</td><td>4.03 / 15.44</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>Fraction of atoms with force magnitude error exceeding threshold. Lower is better ↓. Even small fractions here can crash MD simulations.</p>
+          <table class="dt">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
+              <th>&gt;4.0</th><th>&gt;5.0</th><th>&gt;7.0</th><th>&gt;10.0</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES</td><td>1.53</td><td>0.25</td><td>0.04</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>6.08</td><td>1.20</td><td>0.17</td><td>0.07</td><td>0.04</td><td>0.03</td><td>0.02</td><td>0.02</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>9.36</td><td>2.35</td><td>0.45</td><td>0.16</td><td>0.07</td><td>0.04</td><td>0.02</td><td>0.01</td></tr>
+              <tr><td>MACE</td><td>11.95</td><td>3.44</td><td>0.59</td><td>0.19</td><td>0.08</td><td>0.05</td><td>0.03</td><td>0.02</td></tr>
+              <tr><td>UMA</td><td>7.78</td><td>2.69</td><td>1.06</td><td>0.81</td><td>0.71</td><td>0.65</td><td>0.58</td><td>0.52</td></tr>
+              <tr><td>CHGNet</td><td>18.34</td><td>5.71</td><td>0.94</td><td>0.29</td><td>0.12</td><td>0.07</td><td>0.04</td><td>0.02</td></tr>
+              <tr><td>M3GNet</td><td>26.55</td><td>10.79</td><td>2.76</td><td>1.06</td><td>0.49</td><td>0.26</td><td>0.10</td><td>0.03</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <!-- ── r2SCAN TAB ── -->
+  <!-- ══ r2SCAN TAB ══ -->
   <div id="tab-r2scan" class="tab-panel">
+    <div class="callout" style="margin-bottom:1rem;">
+      Showing only the three r2SCAN-trained FPs — models with training data matched to the r2SCAN functional. This gives the fairest comparison on this dataset.
+    </div>
     <div class="lb-wrap">
       <table class="lb-table" id="tbl-r2scan">
-        <thead>
-          <tr>
-            <th onclick="sortTable('tbl-r2scan',0,true)">#<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',1,false)">Model<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',2,false)">Training<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',3,true)" class="sorted-asc">MAE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',4,true)">RMSE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',5,true)">MAE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',6,true)">RMSE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',7,false)">frac(&lt;0.01&amp;&lt;1°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',8,false)">frac(&lt;0.01&amp;&lt;20°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-r2scan',9,true)">frac(&gt;1 eV/Å)<br>(%) ↓<span class="sort-icon"></span></th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th onclick="sortTable('tbl-r2scan',0,true)">#<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',1,false)">Model<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',2,false)">Training<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',3,true)" class="sorted-asc">MAE / RMSE |ΔF| (eV/Å) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',4,true)">MAE / RMSE |Δθ| (°) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',5,false)">frac(&lt;0.01) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',6,false)">frac(&lt;0.01 &amp; &lt;1°/20°) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-r2scan',7,true)">frac(&gt;1 eV/Å) (%) ↓<span class="sort-icon"></span></th>
+        </tr></thead>
         <tbody>
-          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES <span class="tag-in">r2SCAN</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.12">0.12</td><td class="num" data-val="1.34">1.34</td><td class="num" data-val="17">17</td><td class="num" data-val="33">33</td><td class="num" data-val="2.33">2.33</td><td class="num" data-val="10.35">10.35</td><td class="num" data-val="0.54">0.54</td></tr>
-          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES <span class="tag-in">r2SCAN</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.19">0.19</td><td class="num" data-val="0.71">0.71</td><td class="num" data-val="26">26</td><td class="num" data-val="45">45</td><td class="num" data-val="0.79">0.79</td><td class="num" data-val="4.19">4.19</td><td class="num" data-val="1.64">1.64</td></tr>
-          <tr><td class="rank num">3</td><td class="model-name">MACE-MatPES <span class="tag-ood">PBE</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.20">0.20</td><td class="num" data-val="0.73">0.73</td><td class="num" data-val="30">30</td><td class="num" data-val="52">52</td><td class="num" data-val="0.82">0.82</td><td class="num" data-val="4.43">4.43</td><td class="num" data-val="1.53">1.53</td></tr>
-          <tr><td class="rank num">4</td><td class="model-name">M3GNet-MatPES <span class="tag-in">r2SCAN</span></td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.23">0.23</td><td class="num" data-val="0.65">0.65</td><td class="num" data-val="30">30</td><td class="num" data-val="48">48</td><td class="num" data-val="0.80">0.80</td><td class="num" data-val="3.48">3.48</td><td class="num" data-val="2.87">2.87</td></tr>
-          <tr><td class="rank num">5</td><td class="model-name">TensorNet-MatPES <span class="tag-ood">PBE</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.26">0.26</td><td class="num" data-val="1.27">1.27</td><td class="num" data-val="37">37</td><td class="num" data-val="58">58</td><td class="num" data-val="0.56">0.56</td><td class="num" data-val="2.76">2.76</td><td class="num" data-val="2.95">2.95</td></tr>
-          <tr><td class="rank num">6</td><td class="model-name">M3GNet-MatPES <span class="tag-ood">PBE</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.30">0.30</td><td class="num" data-val="0.92">0.92</td><td class="num" data-val="41">41</td><td class="num" data-val="62">62</td><td class="num" data-val="0.50">0.50</td><td class="num" data-val="2.08">2.08</td><td class="num" data-val="4.61">4.61</td></tr>
-          <tr><td class="rank num">7</td><td class="model-name">MACE</td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.31">0.31</td><td class="num" data-val="1.62">1.62</td><td class="num" data-val="41">41</td><td class="num" data-val="63">63</td><td class="num" data-val="0.56">0.56</td><td class="num" data-val="2.53">2.53</td><td class="num" data-val="5.06">5.06</td></tr>
-          <tr><td class="rank num">8</td><td class="model-name">CHGNet</td><td class="training">MPtrj</td><td class="num" data-val="0.39">0.39</td><td class="num" data-val="1.85">1.85</td><td class="num" data-val="47">47</td><td class="num" data-val="68">68</td><td class="num" data-val="0.43">0.43</td><td class="num" data-val="1.32">1.32</td><td class="num" data-val="8.13">8.13</td></tr>
-          <tr><td class="rank num">9</td><td class="model-name">M3GNet</td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.51">0.51</td><td class="num" data-val="1.11">1.11</td><td class="num" data-val="57">57</td><td class="num" data-val="76">76</td><td class="num" data-val="0.37">0.37</td><td class="num" data-val="0.94">0.94</td><td class="num" data-val="13.79">13.79</td></tr>
-          <tr><td class="rank num">10</td><td class="model-name">UMA</td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.71">0.71</td><td class="num" data-val="8.68">8.68</td><td class="num" data-val="35">35</td><td class="num" data-val="58">58</td><td class="num" data-val="0.75">0.75</td><td class="num" data-val="4.17">4.17</td><td class="num" data-val="3.42">3.42</td></tr>
+          <tr><td class="rank num">1</td><td class="model-name">MACE-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.12">0.12 / 1.34</td><td class="num" data-val="17">17 / 33</td><td class="num" data-val="12.8">12.8</td><td class="num" data-val="2.33">2.33 / 10.35</td><td class="num" data-val="0.54">0.54</td></tr>
+          <tr><td class="rank num">2</td><td class="model-name">TensorNet-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.19">0.19 / 0.71</td><td class="num" data-val="26">26 / 45</td><td class="num" data-val="6.4">6.4</td><td class="num" data-val="0.79">0.79 / 4.19</td><td class="num" data-val="1.64">1.64</td></tr>
+          <tr><td class="rank num">3</td><td class="model-name">M3GNet-MatPES</td><td class="training">MatPES-r2SCAN</td><td class="num" data-val="0.23">0.23 / 0.65</td><td class="num" data-val="30">30 / 48</td><td class="num" data-val="5.9">5.9</td><td class="num" data-val="0.80">0.80 / 3.48</td><td class="num" data-val="2.87">2.87</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lb-note">
       Dataset: MatPES-r2SCAN — 386,869 structures, 3,049,946 atoms.
-      <span class="tag-in">r2SCAN</span> = matched functional training (in-distribution);
-      <span class="tag-ood">PBE</span> = cross-functional evaluation (out-of-distribution).
-      Near-equilibrium atoms: <span>66.7%</span>. Far-from-equilibrium: <span>33.3%</span>.
+      Near-eq atoms: <span>66.7%</span>. Far-from-eq: <span>33.3%</span>.
+      All three models trained on MatPES-r2SCAN (functional-matched). For cross-functional results see the GitHub repository.
     </p>
+
+    <!-- r2SCAN detailed tables -->
+    <div class="detail-wrap">
+      <details>
+        <summary>Joint accuracy fraction — % atoms with |ΔF| &lt; threshold AND |Δθ| &lt; 1° / 20°</summary>
+        <div class="detail-inner">
+          <p>Each cell: |Δθ|&lt;1° / |Δθ|&lt;20°. Higher is better ↑.</p>
+          <table class="dt">
+            <thead><tr>
+              <th>Model</th>
+              <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
+              <th>|ΔF|&lt;0.07</th><th>|ΔF|&lt;0.10</th><th>|ΔF|&lt;0.20</th><th>|ΔF|&lt;0.50</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES</td><td>2.33 / 10.35</td><td>4.14 / 19.21</td><td>7.13 / 37.89</td><td>8.13 / 45.96</td><td>9.02 / 54.35</td><td>10.18 / 68.15</td><td>—</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>0.79 / 4.19</td><td>1.50 / 8.14</td><td>3.13 / 18.42</td><td>3.91 / 24.07</td><td>4.76 / 31.10</td><td>6.26 / 45.88</td><td>—</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>0.80 / 3.48</td><td>1.54 / 6.82</td><td>3.19 / 15.48</td><td>3.97 / 20.25</td><td>4.82 / 26.16</td><td>6.17 / 38.55</td><td>6.98 / 51.11</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>Lower is better ↓.</p>
+          <table class="dt">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
+              <th>&gt;4.0</th><th>&gt;5.0</th><th>&gt;10.0</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>MACE-MatPES</td><td>3.09</td><td>0.54</td><td>0.09</td><td>0.04</td><td>0.03</td><td>0.02</td><td>0.007</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>7.83</td><td>1.64</td><td>0.25</td><td>0.10</td><td>0.06</td><td>0.04</td><td>0.014</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>11.19</td><td>2.87</td><td>0.54</td><td>0.19</td><td>0.08</td><td>0.04</td><td>0.009</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <!-- ── RATTLED-1000 TAB ── -->
+  <!-- ══ RATTLED-1000 TAB ══ -->
   <div id="tab-rattled" class="tab-panel">
     <div class="lb-wrap">
       <table class="lb-table" id="tbl-rattled">
-        <thead>
-          <tr>
-            <th onclick="sortTable('tbl-rattled',0,true)">#<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',1,false)">Model<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',2,false)">Training<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',3,true)" class="sorted-asc">MAE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',4,true)">RMSE |ΔF|<br>(eV/Å) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',5,true)">MAE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',6,true)">RMSE |Δθ|<br>(°) ↓<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',7,false)">frac(&lt;0.01&amp;&lt;1°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',8,false)">frac(&lt;0.01&amp;&lt;20°)<br>(%) ↑<span class="sort-icon"></span></th>
-            <th onclick="sortTable('tbl-rattled',9,true)">frac(&gt;1 eV/Å)<br>(%) ↓<span class="sort-icon"></span></th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th onclick="sortTable('tbl-rattled',0,true)">#<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',1,false)">Model<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',2,false)">Training<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',3,true)" class="sorted-asc">MAE / RMSE |ΔF| (eV/Å) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',4,true)">MAE / RMSE |Δθ| (°) ↓<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',5,false)">frac(&lt;0.01) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',6,false)">frac(&lt;0.01 &amp; &lt;1°/20°) (%) ↑<span class="sort-icon"></span></th>
+          <th onclick="sortTable('tbl-rattled',7,true)">frac(&gt;1 eV/Å) (%) ↓<span class="sort-icon"></span></th>
+        </tr></thead>
         <tbody>
-          <tr><td class="rank num">1</td><td class="model-name">UMA <span class="tag-in">in-dist</span></td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.09">0.09</td><td class="num" data-val="0.22">0.22</td><td class="num" data-val="4">4</td><td class="num" data-val="8">8</td><td class="num" data-val="4.76">4.76</td><td class="num" data-val="12.97">12.97</td><td class="num" data-val="0.51">0.51</td></tr>
-          <tr><td class="rank num">2</td><td class="model-name">MACE</td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.34">0.34</td><td class="num" data-val="2.83">2.83</td><td class="num" data-val="8">8</td><td class="num" data-val="14">14</td><td class="num" data-val="0.27">0.27</td><td class="num" data-val="3.71">3.71</td><td class="num" data-val="5.72">5.72</td></tr>
-          <tr><td class="rank num">3</td><td class="model-name">MACE-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.43">0.43</td><td class="num" data-val="2.25">2.25</td><td class="num" data-val="8">8</td><td class="num" data-val="15">15</td><td class="num" data-val="0.31">0.31</td><td class="num" data-val="3.74">3.74</td><td class="num" data-val="8.94">8.94</td></tr>
-          <tr><td class="rank num">4</td><td class="model-name">M3GNet-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.55">0.55</td><td class="num" data-val="2.18">2.18</td><td class="num" data-val="13">13</td><td class="num" data-val="22">22</td><td class="num" data-val="0.06">0.06</td><td class="num" data-val="1.79">1.79</td><td class="num" data-val="12.43">12.43</td></tr>
-          <tr><td class="rank num">5</td><td class="model-name">TensorNet-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.60">0.60</td><td class="num" data-val="4.15">4.15</td><td class="num" data-val="12">12</td><td class="num" data-val="20">20</td><td class="num" data-val="0.08">0.08</td><td class="num" data-val="2.01">2.01</td><td class="num" data-val="12.65">12.65</td></tr>
-          <tr><td class="rank num">6</td><td class="model-name">CHGNet</td><td class="training">MPtrj</td><td class="num" data-val="0.76">0.76</td><td class="num" data-val="4.00">4.00</td><td class="num" data-val="13">13</td><td class="num" data-val="22">22</td><td class="num" data-val="0.03">0.03</td><td class="num" data-val="1.34">1.34</td><td class="num" data-val="18.50">18.50</td></tr>
-          <tr><td class="rank num">7</td><td class="model-name">M3GNet</td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.91">0.91</td><td class="num" data-val="1.96">1.96</td><td class="num" data-val="19">19</td><td class="num" data-val="30">30</td><td class="num" data-val="0.01">0.01</td><td class="num" data-val="0.81">0.81</td><td class="num" data-val="27.66">27.66</td></tr>
+          <tr><td class="rank num">1</td><td class="model-name">UMA <span class="tag-in">in-dist</span></td><td class="training">OMAT24 + MPtrj + ODAC</td><td class="num" data-val="0.09">0.09 / 0.22</td><td class="num" data-val="4">4 / 8</td><td class="num" data-val="13.1">13.1</td><td class="num" data-val="4.76">4.76 / 12.97</td><td class="num" data-val="0.51">0.51</td></tr>
+          <tr><td class="rank num">2</td><td class="model-name">MACE <span class="tag-ood">ood</span></td><td class="training">MPtrj + Alexandria</td><td class="num" data-val="0.34">0.34 / 2.83</td><td class="num" data-val="8">8 / 14</td><td class="num" data-val="4.1">4.1</td><td class="num" data-val="0.27">0.27 / 3.71</td><td class="num" data-val="5.72">5.72</td></tr>
+          <tr><td class="rank num">3</td><td class="model-name">MACE-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.43">0.43 / 2.25</td><td class="num" data-val="8">8 / 15</td><td class="num" data-val="4.1">4.1</td><td class="num" data-val="0.31">0.31 / 3.74</td><td class="num" data-val="8.94">8.94</td></tr>
+          <tr><td class="rank num">4</td><td class="model-name">M3GNet-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.55">0.55 / 2.18</td><td class="num" data-val="13">13 / 22</td><td class="num" data-val="2.3">2.3</td><td class="num" data-val="0.06">0.06 / 1.79</td><td class="num" data-val="12.43">12.43</td></tr>
+          <tr><td class="rank num">5</td><td class="model-name">TensorNet-MatPES <span class="tag-ood">ood</span></td><td class="training">MatPES-PBE</td><td class="num" data-val="0.60">0.60 / 4.15</td><td class="num" data-val="12">12 / 20</td><td class="num" data-val="2.5">2.5</td><td class="num" data-val="0.08">0.08 / 2.01</td><td class="num" data-val="12.65">12.65</td></tr>
+          <tr><td class="rank num">6</td><td class="model-name">CHGNet <span class="tag-ood">ood</span></td><td class="training">MPtrj</td><td class="num" data-val="0.76">0.76 / 4.00</td><td class="num" data-val="13">13 / 22</td><td class="num" data-val="1.8">1.8</td><td class="num" data-val="0.03">0.03 / 1.34</td><td class="num" data-val="18.50">18.50</td></tr>
+          <tr><td class="rank num">7</td><td class="model-name">M3GNet <span class="tag-ood">ood</span></td><td class="training">MP-2021.2.8</td><td class="num" data-val="0.91">0.91 / 1.96</td><td class="num" data-val="19">19 / 30</td><td class="num" data-val="1.3">1.3</td><td class="num" data-val="0.01">0.01 / 0.81</td><td class="num" data-val="27.66">27.66</td></tr>
         </tbody>
       </table>
     </div>
     <p class="lb-note">
       Dataset: Rattled-1000 (OMAT24) — 117,004 structures, 1,657,763 atoms.
-      <span class="tag-in">in-dist</span> UMA was trained on OMAT24 which includes rattled structures (in-distribution advantage);
-      <span class="tag-ood">ood</span> = out-of-distribution for MatPES-trained models.
-      Far-from-equilibrium atoms (|F<sub>DFT</sub>| &ge; 1 eV/Å): <span>80.0%</span>.
+      <span class="tag-in">in-dist</span> UMA trained on OMAT24 rattled structures (in-distribution advantage);
+      <span class="tag-ood">ood</span> = out-of-distribution.
+      Far-from-eq atoms: <span>80.0%</span>.
     </p>
+
+    <!-- Rattled-1000 detailed tables -->
+    <div class="detail-wrap">
+      <details>
+        <summary>Joint accuracy fraction — % atoms with |ΔF| &lt; threshold AND |Δθ| &lt; 1° / 20°</summary>
+        <div class="detail-inner">
+          <p>Each cell: |Δθ|&lt;1° / |Δθ|&lt;20°. Higher is better ↑. Note: UMA is in-distribution for this dataset.</p>
+          <table class="dt">
+            <thead><tr>
+              <th>Model</th>
+              <th>|ΔF|&lt;0.01</th><th>|ΔF|&lt;0.02</th><th>|ΔF|&lt;0.05</th>
+              <th>|ΔF|&lt;0.07</th><th>|ΔF|&lt;0.10</th><th>|ΔF|&lt;0.20</th><th>|ΔF|&lt;0.50</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>UMA</td><td>5.39 / 11.43</td><td>10.22 / 22.03</td><td>20.85 / 47.26</td><td>25.36 / 58.99</td><td>29.73 / 71.12</td><td>35.45 / 88.47</td><td>37.99 / 97.29</td></tr>
+              <tr><td>MACE</td><td>0.31 / 3.12</td><td>0.63 / 6.27</td><td>1.54 / 15.45</td><td>2.10 / 21.28</td><td>2.90 / 29.42</td><td>4.99 / 50.52</td><td>7.99 / 78.11</td></tr>
+              <tr><td>MACE-MatPES</td><td>0.35 / 3.10</td><td>0.69 / 6.20</td><td>1.68 / 15.15</td><td>2.28 / 20.69</td><td>3.07 / 28.22</td><td>4.96 / 47.07</td><td>7.58 / 72.77</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>0.07 / 1.68</td><td>0.14 / 3.36</td><td>0.35 / 8.27</td><td>0.49 / 11.50</td><td>0.69 / 16.24</td><td>1.29 / 30.60</td><td>2.54 / 58.58</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>0.09 / 1.86</td><td>0.19 / 3.71</td><td>0.47 / 9.21</td><td>0.65 / 12.80</td><td>0.92 / 17.99</td><td>1.71 / 33.40</td><td>3.27 / 61.16</td></tr>
+              <tr><td>CHGNet</td><td>0.03 / 1.15</td><td>0.07 / 2.32</td><td>0.17 / 5.74</td><td>0.24 / 8.02</td><td>0.35 / 11.38</td><td>0.67 / 22.11</td><td>1.49 / 47.39</td></tr>
+              <tr><td>M3GNet</td><td>0.02 / 0.77</td><td>0.04 / 1.53</td><td>0.09 / 3.83</td><td>0.12 / 5.36</td><td>0.17 / 7.66</td><td>0.34 / 15.03</td><td>0.80 / 33.72</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>Catastrophic error fraction — % atoms with |ΔF| &gt; threshold (eV/Å)</summary>
+        <div class="detail-inner">
+          <p>Lower is better ↓. All MatPES-trained models are out-of-distribution here.</p>
+          <table class="dt">
+            <thead><tr>
+              <th>Model</th>
+              <th>&gt;0.5</th><th>&gt;1.0</th><th>&gt;2.0</th><th>&gt;3.0</th>
+              <th>&gt;4.0</th><th>&gt;5.0</th><th>&gt;7.0</th><th>&gt;10.0</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>UMA</td><td>1.95</td><td>0.51</td><td>0.12</td><td>0.05</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.00</td></tr>
+              <tr><td>MACE</td><td>16.12</td><td>5.72</td><td>1.59</td><td>0.72</td><td>0.41</td><td>0.27</td><td>0.15</td><td>0.08</td></tr>
+              <tr><td>MACE-MatPES</td><td>20.35</td><td>8.94</td><td>3.19</td><td>1.58</td><td>0.94</td><td>0.62</td><td>0.33</td><td>0.17</td></tr>
+              <tr><td>M3GNet-MatPES</td><td>29.74</td><td>12.43</td><td>4.04</td><td>1.93</td><td>1.12</td><td>0.72</td><td>0.37</td><td>0.19</td></tr>
+              <tr><td>TensorNet-MatPES</td><td>28.67</td><td>12.65</td><td>4.51</td><td>2.32</td><td>1.42</td><td>0.95</td><td>0.52</td><td>0.28</td></tr>
+              <tr><td>CHGNet</td><td>39.45</td><td>18.50</td><td>6.82</td><td>3.55</td><td>2.17</td><td>1.46</td><td>0.78</td><td>0.38</td></tr>
+              <tr><td>M3GNet</td><td>49.98</td><td>27.66</td><td>10.85</td><td>5.11</td><td>2.74</td><td>1.67</td><td>0.73</td><td>0.28</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
-<!-- ════════════════════════════ MOTIVATION ════════════════════════════ -->
+<!-- ════════════════ MOTIVATION ════════════════ -->
 <section id="motivation">
   <h2>Why Average Error Is Not Enough</h2>
-
   <p>
     Current FP evaluations overwhelmingly rely on a single number — the MAE or RMSE
-    of force magnitude. This is convenient but incomplete. A model with low average error
-    can still fail in ways that matter enormously in practice:
+    of force magnitude. This is convenient but incomplete.
   </p>
-
   <div class="callout">
     <strong>The problem:</strong> A model can predict forces that point in completely wrong
     directions, or produce catastrophically large errors on a small fraction of atoms —
     and both failure modes are masked by the average.
   </div>
-
   <p>
-    These failures have real consequences. Static relaxations and NEB calculations typically
-    require force convergence of <strong>0.001–0.01 eV/Å</strong>. Misdirected or
-    catastrophically large force predictions during molecular dynamics can destabilize
-    trajectories and produce unphysical atomic dynamics.
+    These failures have real consequences. Static relaxations and NEB calculations require
+    force convergence of <strong>0.001–0.01 eV/Å</strong>. Misdirected or
+    catastrophically large forces during MD can destabilize trajectories.
   </p>
 </section>
 
-<!-- ════════════════════════════ METRICS ════════════════════════════ -->
+<!-- ════════════════ METRICS ════════════════ -->
 <section id="metrics">
   <h2>Metric Definitions</h2>
-
-  <p>
-    This benchmark introduces two complementary per-atom metrics and evaluates them
-    across three physically motivated force regimes.
-  </p>
+  <p>Two complementary per-atom metrics, evaluated across three physically motivated force regimes.</p>
 
   <div class="metric-row">
     <div class="metric-card">
       <div class="symbol">|ΔF|</div>
       <div class="label">Force magnitude error — eV/Å</div>
       <div class="formula">|ΔF| = | |F_FP| − |F_DFT| |</div>
-      <div class="desc">
-        How far off is the predicted force <em>strength</em>?
-        Drives errors in bond lengths, lattice constants, and energy barriers.
-        MAE and RMSE of |ΔF| are reported; RMSE is sensitive to catastrophic outliers.
-      </div>
+      <div class="desc">How far off is the predicted force <em>strength</em>? Drives errors in bond lengths, lattice constants, and energy barriers. MAE is the primary metric; RMSE captures catastrophic outliers.</div>
     </div>
     <div class="metric-card">
       <div class="symbol">|Δθ|</div>
       <div class="label">Force direction error — degrees</div>
       <div class="formula">|Δθ| = arccos( F_FP · F_DFT / (|F_FP| |F_DFT|) )</div>
-      <div class="desc">
-        How wrong is the predicted force <em>direction</em>?
-        A large angular error pushes atoms toward wrong energy minima
-        even when the magnitude looks acceptable. Evaluated only for atoms where
-        |F<sub>DFT</sub>| &gt; 0.01 eV/Å to avoid division noise.
-      </div>
+      <div class="desc">How wrong is the predicted force <em>direction</em>? Large angular error pushes atoms toward wrong energy minima even when magnitude looks acceptable. Only computed for |F<sub>DFT</sub>| &gt; 0.01 eV/Å.</div>
     </div>
   </div>
 
   <h3>Fraction metrics</h3>
-
   <div class="metric-row">
     <div class="metric-card">
       <div class="symbol" style="font-size:1.1rem;">frac(&lt;δ &amp; &lt;α) ↑</div>
-      <div class="label">DFT-substitutable fraction — higher is better</div>
+      <div class="label">DFT-substitutable fraction</div>
       <div class="formula">% atoms: |ΔF| &lt; δ  AND  |Δθ| &lt; α</div>
-      <div class="desc">
-        Joint criterion requiring <em>both</em> low magnitude error and accurate direction.
-        Reported for (δ, α) = (0.01 eV/Å, 1°) and (0.01 eV/Å, 20°).
-        This is the fraction of atoms where the FP force is precise enough to substitute DFT.
-      </div>
+      <div class="desc">Joint criterion requiring both low magnitude and accurate direction. Reported for (δ,α) = (0.01 eV/Å, 1°) and (0.01 eV/Å, 20°). The fraction of atoms where the FP force can substitute DFT.</div>
     </div>
     <div class="metric-card">
       <div class="symbol" style="font-size:1.1rem;">frac(&gt;1 eV/Å) ↓</div>
-      <div class="label">Catastrophic error fraction — lower is better</div>
+      <div class="label">Catastrophic error fraction</div>
       <div class="formula">% atoms: |ΔF| &gt; 1 eV/Å</div>
-      <div class="desc">
-        Even a small fraction of atoms with |ΔF| &gt; 1 eV/Å can crash an MD simulation
-        or corrupt a relaxation trajectory. This metric is invisible to average error
-        but highly consequential in practice.
-      </div>
+      <div class="desc">Even a small fraction of atoms with |ΔF| &gt; 1 eV/Å can crash an MD simulation. This metric is invisible to average error but highly consequential.</div>
     </div>
   </div>
 
   <h3>Three analysis regimes</h3>
-
   <div class="regime-row">
     <div class="regime-card">
       <div class="rtag tag-green">DFT-substitutable</div>
       <h3>Highly accurate predictions</h3>
-      <p>|ΔF| &lt; 0.01–0.1 eV/Å <em>and</em> |Δθ| &lt; 1–20°. Required for converged relaxations and reliable NEB barriers. For most FPs, jointly satisfying both criteria is rare (&lt;20% of atoms).</p>
+      <p>|ΔF| &lt; 0.01–0.1 eV/Å <em>and</em> |Δθ| &lt; 1–20°. Required for converged relaxations and NEB barriers. Jointly satisfying both is rare (&lt;20% of atoms for most FPs).</p>
     </div>
     <div class="regime-card">
       <div class="rtag tag-red">Catastrophic failures</div>
       <h3>Large-error atoms</h3>
-      <p>|ΔF| &gt; 1 eV/Å. Rarely reported by average metrics, but highly consequential — even a small fraction of these can crash an MD simulation or corrupt a trajectory.</p>
+      <p>|ΔF| &gt; 1 eV/Å. Rarely reported, but highly consequential — a small fraction of these can crash MD or corrupt a trajectory.</p>
     </div>
     <div class="regime-card">
       <div class="rtag tag-blue">Far-from-equilibrium</div>
       <h3>High-force configurations</h3>
-      <p>|F<sub>DFT</sub>| &ge; 1 eV/Å. About 26.9% of MatPES-PBE atoms fall here vs only ~6% in MPtrj. Most benchmarks under-test this regime that is critical for MD stability.</p>
+      <p>|F<sub>DFT</sub>| &ge; 1 eV/Å. About 26.9% of MatPES-PBE atoms fall here vs ~6% in MPtrj. Most benchmarks under-test this regime.</p>
     </div>
-  </div>
-
-  <div class="callout">
-    <strong>Key finding:</strong> The <em>fraction</em> of low-error atoms and the
-    <em>fraction</em> of catastrophic-error atoms are more informative than MAE/RMSE
-    alone. The test dataset must include a substantial fraction of far-from-equilibrium atoms
-    to meaningfully evaluate FP reliability beyond near-equilibrium relaxation.
   </div>
 </section>
 
-<!-- ════════════════════════════ DATASETS ════════════════════════════ -->
+<!-- ════════════════ DATASETS ════════════════ -->
 <section id="datasets">
   <h2>Benchmark Datasets</h2>
-
   <div class="dataset-grid">
     <div class="dataset-card">
       <div class="ds-name">MatPES-PBE</div>
@@ -564,11 +596,7 @@
       <div class="ds-stat">Atoms: <span>3,871,763</span></div>
       <div class="ds-stat">DFT level: <span>PBE + PAW (VASP)</span></div>
       <div class="ds-stat">FPs evaluated: <span>7</span></div>
-      <div class="ds-desc">
-        The primary PBE benchmark. Diverse inorganic crystal structures from the
-        Materials Project, including near-equilibrium and far-from-equilibrium
-        configurations. 26.9% of atoms have |F<sub>DFT</sub>| &ge; 1 eV/Å.
-      </div>
+      <div class="ds-desc">Primary PBE benchmark. Diverse inorganic crystals from the Materials Project. 26.9% of atoms have |F<sub>DFT</sub>| &ge; 1 eV/Å.</div>
       <div class="ds-tag">data/all_results_PBE_all_data.json (~2.9 GB)</div>
     </div>
     <div class="dataset-card">
@@ -576,12 +604,8 @@
       <div class="ds-stat">Structures: <span>386,869</span></div>
       <div class="ds-stat">Atoms: <span>3,049,946</span></div>
       <div class="ds-stat">DFT level: <span>r2SCAN + PAW (VASP)</span></div>
-      <div class="ds-stat">FPs evaluated: <span>10</span></div>
-      <div class="ds-desc">
-        Higher-accuracy r2SCAN functional benchmark. Includes both PBE-trained and
-        r2SCAN-trained model variants, enabling direct comparison of matched vs.
-        mismatched functional training. 33.3% far-from-equilibrium atoms.
-      </div>
+      <div class="ds-stat">FPs evaluated: <span>10 (3 r2SCAN-trained)</span></div>
+      <div class="ds-desc">Higher-accuracy r2SCAN benchmark. Compares functional-matched vs. mismatched training. 33.3% far-from-eq atoms.</div>
       <div class="ds-tag">data/all_results_R2SCAN_all_data.json (~2.2 GB)</div>
     </div>
     <div class="dataset-card">
@@ -590,81 +614,52 @@
       <div class="ds-stat">Atoms: <span>1,657,763</span></div>
       <div class="ds-stat">DFT level: <span>PBE + PAW (VASP)</span></div>
       <div class="ds-stat">FPs evaluated: <span>7</span></div>
-      <div class="ds-desc">
-        1,000 OMAT24 structures with random atomic displacements, producing
-        predominantly far-from-equilibrium configurations (80.0% atoms have
-        |F<sub>DFT</sub>| &ge; 1 eV/Å). Tests generalization to highly distorted
-        structures. UMA is in-distribution (trained on OMAT24).
-      </div>
+      <div class="ds-desc">1,000 OMAT24 structures with random atomic displacements. 80.0% far-from-eq atoms. Tests generalization to highly distorted structures. UMA is in-distribution.</div>
       <div class="ds-tag">data/rattled_1000_results/*.json (Git LFS)</div>
     </div>
   </div>
 
   <h3>Data access</h3>
-  <pre><code># 1. Clone and pull LFS-tracked files
-git clone https://github.com/kamirian/Matpes_analysis.git
+  <pre><code>git clone https://github.com/kamirian/Matpes_analysis.git
 cd Matpes_analysis
-git lfs pull   # pulls R2SCAN/ and rattled_1000_results/ (~4 GB)
-
-# 2. Download large PBE/r2SCAN files (hosted externally — link in README)
-#    Place in data/ after downloading:
-#    data/all_results_PBE_all_data.json   (~2.9 GB)
-#    data/all_results_R2SCAN_all_data.json (~2.2 GB)
-
-# 3. Install dependencies
+git lfs pull          # pulls R2SCAN/ and rattled_1000_results/
+# Download large PBE/r2SCAN files — see README for links
 pip install -r requirements.txt</code></pre>
-
-  <p class="lb-note">
-    Download links for the large PBE and r2SCAN files will be added once data is
-    deposited on Zenodo / HuggingFace Datasets. See the README for current status.
-  </p>
 </section>
 
-<!-- ════════════════════════════ HOW TO SUBMIT ════════════════════════════ -->
+<!-- ════════════════ HOW TO SUBMIT ════════════════ -->
 <section id="submit">
   <h2>How to Submit Your Model</h2>
-
-  <p>
-    We welcome evaluation of new foundation potentials on these benchmarks.
-    Follow the steps below to run the same evaluation pipeline and report results
-    using the same metrics and dataset splits.
-  </p>
-
+  <p>Evaluate your FP on these datasets and appear on the leaderboard using the same pipeline.</p>
   <div class="callout green">
-    <strong>Reproducibility:</strong> All analysis code is open-source. By following
-    this protocol, your results will be directly comparable to the values in the
-    leaderboard above.
+    <strong>Reproducibility:</strong> All analysis code is open-source. Follow this protocol to get results directly comparable to the leaderboard.
   </div>
-
   <div class="submit-steps">
     <div class="submit-step">
       <div class="step-num"></div>
       <div class="step-body">
         <h4>Set up the environment</h4>
-        <p>Clone the repository and install dependencies. Each FP has its own environment requirements — see the README for per-model installation instructions (ASE, MACE, CHGNet, MatGL, UMA/fairchem, etc.).</p>
+        <p>Clone the repo and install dependencies. Each FP has its own environment — see the README for per-model installation (ASE, MACE, CHGNet, MatGL, fairchem, etc.).</p>
         <pre><code>git clone https://github.com/kamirian/Matpes_analysis.git
-cd Matpes_analysis
-pip install -r requirements.txt   # base requirements
-# Then install your FP's additional package (e.g. pip install mace-torch)</code></pre>
+pip install -r requirements.txt   # then install your FP's package</code></pre>
       </div>
     </div>
     <div class="submit-step">
       <div class="step-num"></div>
       <div class="step-body">
         <h4>Download the benchmark data</h4>
-        <p>Pull the LFS-tracked files and download the large PBE/r2SCAN JSON files from the data repository (links in README). Place them in the <code>data/</code> directory as specified in the notebooks.</p>
+        <p>Pull LFS files and download large PBE/r2SCAN JSONs (links in README). Place in <code>data/</code>.</p>
       </div>
     </div>
     <div class="submit-step">
       <div class="step-num"></div>
       <div class="step-body">
         <h4>Run inference with your model</h4>
-        <p>Use the HPC job generator notebooks to produce per-atom force predictions for your model on the chosen dataset. The generator notebooks (<code>generate/run_pbe.ipynb</code>, <code>generate/run_r2scan.ipynb</code>, <code>generate/run_omat24_rattled.ipynb</code>) accept any ASE-compatible calculator. The key output is a JSON file with per-atom <code>all_deltaF</code>, <code>all_deltaTheta</code>, and <code>all_F_dft_mags</code> arrays for each structure.</p>
-        <pre><code># Example: add your model as a new key in all_results dict
-all_results["MyModel"] = {
-    "all_deltaF":      [...],   # |F_FP - F_DFT| per atom (eV/Å)
-    "all_deltaTheta":  [...],   # angle between F_FP and F_DFT per atom (degrees)
-    "all_F_dft_mags":  [...],   # |F_DFT| per atom (eV/Å)
+        <p>Use the generator notebooks (<code>generate/run_pbe.ipynb</code>, etc.) which accept any ASE-compatible calculator. Output: per-atom arrays for each structure.</p>
+        <pre><code>all_results["MyModel"] = {
+    "all_deltaF":     [...],   # |F_FP - F_DFT| per atom (eV/Å)
+    "all_deltaTheta": [...],   # angle(F_FP, F_DFT) per atom (degrees)
+    "all_F_dft_mags": [...],   # |F_DFT| per atom (eV/Å)
 }</code></pre>
       </div>
     </div>
@@ -672,91 +667,54 @@ all_results["MyModel"] = {
       <div class="step-num"></div>
       <div class="step-body">
         <h4>Compute and report metrics</h4>
-        <p>Run the analysis notebook (<code>analysis/pbe_matpes.ipynb</code> or <code>analysis/r2scan_matpes.ipynb</code>) with your model included in <code>all_results</code>. The notebook computes all leaderboard metrics automatically. Report the following columns:</p>
-        <table style="margin-top:0.5rem;">
-          <tr><th>Metric</th><th>Description</th><th>Direction</th></tr>
-          <tr><td>MAE |ΔF| (eV/Å)</td><td>Mean |ΔF|, all atoms with |F_DFT| &gt; 0.01</td><td>↓ lower better</td></tr>
-          <tr><td>RMSE |ΔF| (eV/Å)</td><td>RMS |ΔF|, same filter</td><td>↓ lower better</td></tr>
-          <tr><td>MAE |Δθ| (°)</td><td>Mean angular error, same filter</td><td>↓ lower better</td></tr>
-          <tr><td>RMSE |Δθ| (°)</td><td>RMS angular error</td><td>↓ lower better</td></tr>
-          <tr><td>frac(&lt;0.01 &amp; &lt;1°) (%)</td><td>% atoms jointly accurate at tightest criterion</td><td>↑ higher better</td></tr>
-          <tr><td>frac(&lt;0.01 &amp; &lt;20°) (%)</td><td>% atoms jointly accurate at looser criterion</td><td>↑ higher better</td></tr>
-          <tr><td>frac(&gt;1 eV/Å) (%)</td><td>% atoms with catastrophic force error</td><td>↓ lower better</td></tr>
-        </table>
+        <p>Run the analysis notebook with your model in <code>all_results</code>. Report the 7 leaderboard columns: MAE/RMSE |ΔF|, MAE/RMSE |Δθ|, frac(&lt;0.01), frac(&lt;0.01 &amp; &lt;1°/20°), frac(&gt;1 eV/Å).</p>
       </div>
     </div>
     <div class="submit-step">
       <div class="step-num"></div>
       <div class="step-body">
-        <h4>Open a GitHub issue or pull request</h4>
-        <p>
-          Submit your results by opening a GitHub issue with your model name, training data,
-          architecture, and the computed metrics. We will review and add your model to the
-          leaderboard. Please also specify whether your model is in-distribution or
-          out-of-distribution for each dataset.
-        </p>
-        <p>
-          <a href="https://github.com/kamirian/Matpes_analysis/issues" style="color:var(--accent);">
-            Open a submission issue on GitHub →
-          </a>
-        </p>
+        <h4>Open a GitHub issue</h4>
+        <p>Submit results by opening an issue with your model name, architecture, training data, and computed metrics. We will review and add you to the leaderboard.</p>
+        <p><a href="https://github.com/kamirian/Matpes_analysis/issues" style="color:var(--accent);">Open a submission issue →</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════ ANALYSIS OVERVIEW ════════════════════════════ -->
+<!-- ════════════════ ANALYSIS OVERVIEW ════════════════ -->
 <section id="analysis">
   <h2>Analysis Overview</h2>
-
   <div class="pipeline">
-    <div class="pipeline-step">
-      <div class="num">①</div>
-      <div class="label">Load per-atom<br>force errors</div>
-    </div>
-    <div class="pipeline-step">
-      <div class="num">②</div>
-      <div class="label">Fraction &amp;<br>MAE/RMSE tables</div>
-    </div>
-    <div class="pipeline-step">
-      <div class="num">③</div>
-      <div class="label">2-D density<br>&amp; CDF plots</div>
-    </div>
-    <div class="pipeline-step">
-      <div class="num">④</div>
-      <div class="label">Near-eq vs<br>far-from-eq</div>
-    </div>
-    <div class="pipeline-step">
-      <div class="num">⑤</div>
-      <div class="label">Publication<br>figures</div>
-    </div>
+    <div class="pipeline-step"><div class="num">①</div><div class="label">Load per-atom<br>force errors</div></div>
+    <div class="pipeline-step"><div class="num">②</div><div class="label">Fraction &amp;<br>MAE/RMSE tables</div></div>
+    <div class="pipeline-step"><div class="num">③</div><div class="label">2-D density<br>&amp; CDF plots</div></div>
+    <div class="pipeline-step"><div class="num">④</div><div class="label">Near-eq vs<br>far-from-eq</div></div>
+    <div class="pipeline-step"><div class="num">⑤</div><div class="label">Publication<br>figures</div></div>
   </div>
-
   <h3>Figure types produced</h3>
-  <table>
+  <table class="gen">
     <tr><th>Figure</th><th>Description</th></tr>
-    <tr><td>Split-triangle heatmap</td><td>Fraction of atoms with |ΔF| below threshold; lower triangle = also |Δθ| &lt; 1°, upper = |Δθ| &lt; 20°. Shows joint magnitude-angle accuracy at a glance.</td></tr>
-    <tr><td>Large-error fraction heatmap</td><td>Fraction of atoms with |ΔF| <em>above</em> threshold (log-scale). The catastrophic-failure metric, invisible to average error.</td></tr>
-    <tr><td>CDF of |ΔF| and |Δθ|</td><td>Full cumulative distributions for all models with zoomed insets — one on the high-accuracy tail (&gt;0.97 CDF), one where model curves diverge most.</td></tr>
-    <tr><td>2-D density: |ΔF| vs |Δθ|</td><td>Joint distribution revealing the correlation (or independence) of magnitude and direction errors.</td></tr>
-    <tr><td>2-D density: error vs F<sub>DFT</sub></td><td>Shows whether errors grow with the DFT reference force — i.e., whether models struggle more on high-force atoms.</td></tr>
-    <tr><td>Near-eq / far-from-eq panels</td><td>Error statistics split by |F<sub>DFT</sub>| &lt; 1 eV/Å vs &ge; 1 eV/Å, both absolute and relative error fractions.</td></tr>
+    <tr><td>Split-triangle heatmap</td><td>Fraction with |ΔF| below threshold; lower triangle = |Δθ|&lt;1°, upper = |Δθ|&lt;20°. Shows joint magnitude-angle accuracy at a glance.</td></tr>
+    <tr><td>Large-error fraction heatmap</td><td>Fraction with |ΔF| above threshold (log-scale). The catastrophic-failure metric, invisible to average error.</td></tr>
+    <tr><td>CDF of |ΔF| and |Δθ|</td><td>Full cumulative distributions for all models with zoomed insets.</td></tr>
+    <tr><td>2-D density: |ΔF| vs |Δθ|</td><td>Joint distribution revealing correlation of magnitude and direction errors.</td></tr>
+    <tr><td>2-D density: error vs F<sub>DFT</sub></td><td>Whether errors grow with the DFT reference force — models struggling on high-force atoms.</td></tr>
+    <tr><td>Near-eq / far-from-eq panels</td><td>Error statistics split by |F<sub>DFT</sub>| &lt; 1 vs &ge; 1 eV/Å.</td></tr>
     <tr><td>MAE/RMSE triangular heatmaps</td><td>Lower triangle = MAE, upper = RMSE, conditioned on |F<sub>DFT</sub>| or |ΔF| thresholds.</td></tr>
-    <tr><td>Merged 6-panel figure</td><td>Crystal structure + three density panels + two CDFs. Publication-ready layout at 350 dpi.</td></tr>
+    <tr><td>Merged 6-panel figure</td><td>Crystal structure + density panels + CDFs. Publication-ready at 350 dpi.</td></tr>
   </table>
 </section>
 
-<!-- ════════════════════════════ NOTEBOOKS ════════════════════════════ -->
+<!-- ════════════════ NOTEBOOKS ════════════════ -->
 <section id="notebooks">
   <h2>Notebooks</h2>
-
   <h3>Analysis</h3>
   <div class="nb-grid">
     <div class="nb-card">
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/analysis/pbe_matpes.ipynb">
         <div class="nb-icon">📊</div>
         <h3>MatPES PBE Analysis</h3>
-        <p>Full analysis of 7 FPs against PBE-level DFT forces (~3.87 M atoms). All figure types: fraction heatmaps, CDFs, density plots, regime panels, histograms, and merged overview.</p>
+        <p>Full analysis of 7 FPs against PBE-level DFT forces (~3.87 M atoms). All figure types.</p>
         <span class="nb-tag">analysis/pbe_matpes.ipynb</span>
       </a>
     </div>
@@ -764,7 +722,7 @@ all_results["MyModel"] = {
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/analysis/r2scan_matpes.ipynb">
         <div class="nb-icon">🔬</div>
         <h3>MatPES r2SCAN Analysis</h3>
-        <p>Same analysis against higher-accuracy r2SCAN DFT forces. 10 models including r2SCAN-trained variants — directly comparing functional-matched vs. mismatched training.</p>
+        <p>10 models against r2SCAN DFT forces, comparing functional-matched vs. mismatched training.</p>
         <span class="nb-tag">analysis/r2scan_matpes.ipynb</span>
       </a>
     </div>
@@ -772,19 +730,18 @@ all_results["MyModel"] = {
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/analysis/omat24_rattled.ipynb">
         <div class="nb-icon">🧪</div>
         <h3>Rattled-1000 Analysis</h3>
-        <p>Benchmarks on 1,000 OMAT24 structures with random displacements, testing out-of-distribution generalization to highly distorted, far-from-equilibrium configurations.</p>
+        <p>7 FPs on 1,000 OMAT24 rattled structures — out-of-distribution generalization test.</p>
         <span class="nb-tag">analysis/omat24_rattled.ipynb</span>
       </a>
     </div>
   </div>
-
   <h3>HPC Job Generators</h3>
   <div class="nb-grid">
     <div class="nb-card">
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/generate/run_pbe.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>PBE Job Generator</h3>
-        <p>Generates SLURM scripts for evaluating FPs on the MatPES-PBE dataset in parallel. Chunks the dataset and submits one job per chunk. Easily adapted for any ASE-compatible potential.</p>
+        <p>SLURM scripts for evaluating FPs on MatPES-PBE. Chunks dataset; one job per chunk.</p>
         <span class="nb-tag">generate/run_pbe.ipynb</span>
       </a>
     </div>
@@ -792,7 +749,7 @@ all_results["MyModel"] = {
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/generate/run_r2scan.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>r2SCAN Job Generator</h3>
-        <p>Same workflow targeting the MatPES-r2SCAN dataset. Toggle <code>FUNCTIONAL_PREFIX = "r2scan"</code> to switch datasets.</p>
+        <p>Same workflow for the MatPES-r2SCAN dataset.</p>
         <span class="nb-tag">generate/run_r2scan.ipynb</span>
       </a>
     </div>
@@ -800,94 +757,75 @@ all_results["MyModel"] = {
       <a href="https://github.com/kamirian/Matpes_analysis/blob/main/generate/run_omat24_rattled.ipynb">
         <div class="nb-icon">⚙️</div>
         <h3>Rattled-1000 Generator</h3>
-        <p>Reads the OMAT24 rattled-1000 ASE LMDB database, chunks it into 20 pieces, and generates SLURM jobs for all potentials.</p>
+        <p>Reads OMAT24 LMDB, chunks into 20 pieces, generates SLURM jobs for all potentials.</p>
         <span class="nb-tag">generate/run_omat24_rattled.ipynb</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════ CODE ════════════════════════════ -->
+<!-- ════════════════ CODE ════════════════ -->
 <section id="code">
   <h2>Analysis Code</h2>
-  <p>
-    Three Python modules contain all reusable analysis and visualization logic
-    imported by the notebooks. They operate on plain Python dicts with arrays
-    of per-atom values and are dataset-agnostic.
-  </p>
-
+  <p>Three Python modules imported by all notebooks — dataset-agnostic, operate on plain dicts of per-atom arrays.</p>
   <div class="script-grid">
     <div class="script-card">
       <div class="filename">scripts/matpes_frac_analysis.py</div>
       <h3>Core analysis engine</h3>
-      <p>The computational backbone of all three analysis notebooks. Provides:</p>
       <ul>
-        <li><strong>Fraction tables</strong> — fraction (%) with |ΔF| below threshold, optionally joint with |Δθ|</li>
-        <li><strong>Regime panels</strong> — near-equilibrium vs. far-from-equilibrium error statistics</li>
-        <li><strong>Conditioned MAE/RMSE</strong> — error metrics as a function of |F<sub>DFT</sub>| or |Δθ| thresholds</li>
-        <li><strong>Catastrophic-failure analysis</strong> — fraction with |ΔF| above threshold</li>
-        <li><strong>Query utilities</strong> — find atoms meeting any combination of |ΔF|, |Δθ|, |F<sub>DFT</sub>| criteria</li>
-        <li><strong>Visualization</strong> — all heatmap and histogram types</li>
+        <li>Fraction tables — |ΔF|&lt;threshold, joint with |Δθ|</li>
+        <li>Regime panels — near-eq vs. far-from-eq splits</li>
+        <li>Conditioned MAE/RMSE on |F<sub>DFT</sub>| or |Δθ| thresholds</li>
+        <li>Catastrophic-failure analysis</li>
+        <li>Query utilities — filter atoms by any combination of criteria</li>
       </ul>
     </div>
     <div class="script-card">
       <div class="filename">scripts/mlip_cdf_density_plots.py</div>
       <h3>CDF and density visualization</h3>
-      <p>Handles all continuous distribution figures:</p>
       <ul>
-        <li><strong>CDF computation</strong> — builds CDFs of |ΔF| and |Δθ| for all models, with near-eq / far-from-eq split</li>
-        <li><strong>2-D density panels</strong> — joint density heatmaps with marginal histograms</li>
-        <li><strong>CDF plots with inset</strong> — full CDF with automatically placed zoom inset</li>
-        <li>PCHIP-smoothed CDF curves, log-norm density colormaps, per-model color and linestyle support</li>
+        <li>CDF of |ΔF| and |Δθ| for all models, near-eq / far-from-eq split</li>
+        <li>2-D density heatmaps with marginal histograms</li>
+        <li>CDF plots with automatically placed zoom insets</li>
+        <li>PCHIP-smoothed curves, log-norm colormaps, per-model styles</li>
       </ul>
     </div>
     <div class="script-card">
       <div class="filename">scripts/heatmap_table.py</div>
       <h3>Heatmap drawing primitives</h3>
-      <p>
-        Low-level matplotlib code for the custom split-triangle heatmap style —
-        each cell is divided diagonally, with lower and upper triangles encoding
-        two different statistics (e.g., |Δθ| &lt; 1° vs &lt; 20°, or MAE vs RMSE).
-      </p>
+      <p>Custom split-triangle heatmap style — each cell divided diagonally with lower/upper triangles encoding two statistics (MAE vs RMSE, or |Δθ|&lt;1° vs &lt;20°).</p>
       <ul>
-        <li>Cell-level: <code>draw_triangular_cell</code>, <code>draw_rectangular_cell</code></li>
-        <li>Column-level: <code>draw_triangular_column</code>, <code>draw_rectangular_column</code></li>
-        <li>Figure-level: <code>triangular_heatmap_with_fraction_row</code>, <code>plot_fraction_panel</code></li>
+        <li><code>draw_triangular_cell</code>, <code>draw_rectangular_cell</code></li>
+        <li><code>triangular_heatmap_with_fraction_row</code></li>
+        <li><code>plot_fraction_panel</code></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════ MODELS ════════════════════════════ -->
+<!-- ════════════════ MODELS ════════════════ -->
 <section id="models">
   <h2>Foundation Potentials</h2>
-  <table>
+  <table class="gen">
     <tr><th>Name</th><th>Architecture</th><th>Training Data</th><th>Notes</th></tr>
-    <tr><td>MACE</td><td>MACE</td><td>MPtrj + Alexandria</td><td>MACE-MP-0 medium; general-purpose foundation model</td></tr>
-    <tr><td>CHGNet</td><td>GNN + charge</td><td>MPtrj</td><td>Incorporates charge equilibration</td></tr>
+    <tr><td>MACE</td><td>MACE</td><td>MPtrj + Alexandria</td><td>MACE-MP-0 medium; general-purpose</td></tr>
+    <tr><td>CHGNet</td><td>GNN + charge</td><td>MPtrj</td><td>Charge equilibration</td></tr>
     <tr><td>M3GNet</td><td>M3GNet</td><td>MP-2021.2.8</td><td>Materials Project potential</td></tr>
-    <tr><td>UMA</td><td>eSEN</td><td>OMAT24 + MPtrj + ODAC</td><td>Meta / FAIR large foundation model</td></tr>
-    <tr><td>M3GNet-MatPES</td><td>M3GNet</td><td>MatPES-PBE or r2SCAN</td><td>MatPES-retrained; PBE and r2SCAN variants</td></tr>
-    <tr><td>TensorNet-MatPES</td><td>TensorNet</td><td>MatPES-PBE or r2SCAN</td><td>MatPES-retrained; PBE and r2SCAN variants</td></tr>
-    <tr><td>MACE-MatPES</td><td>MACE</td><td>MatPES-PBE or r2SCAN</td><td>MatPES-retrained; PBE and r2SCAN variants; best overall</td></tr>
+    <tr><td>UMA</td><td>eSEN</td><td>OMAT24 + MPtrj + ODAC</td><td>Meta / FAIR; in-distribution for rattled-1000</td></tr>
+    <tr><td>M3GNet-MatPES</td><td>M3GNet</td><td>MatPES-PBE or r2SCAN</td><td>PBE and r2SCAN variants</td></tr>
+    <tr><td>TensorNet-MatPES</td><td>TensorNet</td><td>MatPES-PBE or r2SCAN</td><td>PBE and r2SCAN variants</td></tr>
+    <tr><td>MACE-MatPES</td><td>MACE</td><td>MatPES-PBE or r2SCAN</td><td>Best overall on MatPES; PBE and r2SCAN variants</td></tr>
   </table>
 </section>
 
-<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
-  <p>
-    <strong>Kiyan Amirian</strong> &amp; <strong>Yifei Mo</strong> ·
-    <a href="https://github.com/kamirian/Matpes_analysis">github.com/kamirian/Matpes_analysis</a>
-  </p>
+  <p><strong>Kiyan Amirian</strong> &amp; <strong>Yifei Mo</strong> · <a href="https://github.com/kamirian/Matpes_analysis">github.com/kamirian/Matpes_analysis</a></p>
   <p class="affil">University of Maryland · MIT License · 2025</p>
-  <p class="affil" style="margin-top:0.6rem; font-size:0.78rem;">
-    If you use these benchmarks, please cite the accompanying paper.
-  </p>
 </footer>
 
-<!-- ════════════════════════════ JAVASCRIPT ════════════════════════════ -->
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
 <script>
-  /* Tab switching */
   function switchTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -895,14 +833,11 @@ all_results["MyModel"] = {
     btn.classList.add('active');
   }
 
-  /* Column sorting */
   function sortTable(tableId, colIdx, numeric) {
     const table = document.getElementById(tableId);
     const thead = table.querySelector('thead');
     const tbody = table.querySelector('tbody');
     const th = thead.querySelectorAll('th')[colIdx];
-
-    // Determine direction
     const isAsc = !th.classList.contains('sorted-asc');
     thead.querySelectorAll('th').forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
     th.classList.add(isAsc ? 'sorted-asc' : 'sorted-desc');
@@ -912,10 +847,10 @@ all_results["MyModel"] = {
       const cellA = a.querySelectorAll('td')[colIdx];
       const cellB = b.querySelectorAll('td')[colIdx];
       const valA = numeric
-        ? parseFloat(cellA.dataset.val ?? cellA.textContent.replace(/[^0-9.\-]/g, ''))
+        ? parseFloat(cellA.dataset.val ?? cellA.textContent)
         : cellA.textContent.trim();
       const valB = numeric
-        ? parseFloat(cellB.dataset.val ?? cellB.textContent.replace(/[^0-9.\-]/g, ''))
+        ? parseFloat(cellB.dataset.val ?? cellB.textContent)
         : cellB.textContent.trim();
       if (numeric) return isAsc ? valA - valB : valB - valA;
       return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
@@ -925,32 +860,28 @@ all_results["MyModel"] = {
       row.querySelector('td.rank').textContent = i + 1;
       tbody.appendChild(row);
     });
-
-    highlightBest(table, numeric);
+    highlightBest(table);
   }
 
-  /* Highlight best / worst in numeric columns (cols 3–9) */
-  function highlightBest(table, doHighlight) {
+  function highlightBest(table) {
     const tbody = table.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
     const numCols = rows[0] ? rows[0].querySelectorAll('td').length : 0;
-
+    // columns 3-7: numeric metric columns (after rank, model, training)
     for (let c = 3; c < numCols; c++) {
       const cells = rows.map(r => r.querySelectorAll('td')[c]);
       const vals = cells.map(cell => parseFloat(cell.dataset.val ?? cell.textContent));
-      const validVals = vals.filter(v => !isNaN(v));
-      if (!validVals.length) continue;
-      const minVal = Math.min(...validVals);
-      const maxVal = Math.max(...validVals);
-
-      // Columns 7 and 8 are "higher is better", rest are "lower is better"
-      const higherIsBetter = (c === 7 || c === 8);
-
+      const valid = vals.filter(v => !isNaN(v));
+      if (!valid.length) continue;
+      const minVal = Math.min(...valid);
+      const maxVal = Math.max(...valid);
+      // col 5 (frac<0.01) and col 6 (frac joint) are higher=better
+      const higherBetter = (c === 5 || c === 6);
       cells.forEach((cell, i) => {
         cell.classList.remove('best', 'worst');
         const v = vals[i];
         if (isNaN(v)) return;
-        if (higherIsBetter) {
+        if (higherBetter) {
           if (v === maxVal) cell.classList.add('best');
           if (v === minVal) cell.classList.add('worst');
         } else {
@@ -961,11 +892,10 @@ all_results["MyModel"] = {
     }
   }
 
-  /* Initial highlight on page load */
   window.addEventListener('DOMContentLoaded', () => {
     ['tbl-pbe', 'tbl-r2scan', 'tbl-rattled'].forEach(id => {
       const t = document.getElementById(id);
-      if (t) highlightBest(t, true);
+      if (t) highlightBest(t);
     });
   });
 </script>
